@@ -9,7 +9,7 @@ module.exports = function(d2) {
          * @param {number} endAngle - end angle in radians from -360 to 360        
          */
         constructor(pc=new d2.Point(), r=1, startAngle=0, endAngle=360) {
-            this.pc = pc.clone();
+            this.pc = pc;
             this.r = r;
             this.startAngle = startAngle;
             this.endAngle = endAngle;            
