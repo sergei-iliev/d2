@@ -24,7 +24,6 @@ module.exports = function(d2) {
         get middle() {
             let angle = this.endAngle>0 ? this.startAngle + this.sweep/2 : this.startAngle - this.sweep/2;
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
-            console.log(angle);
             p0.rotate(angle, this.pc);
             return p0;
         }
@@ -36,14 +35,24 @@ module.exports = function(d2) {
         }
         
         get sweep(){
-        	//let sv=new d2.Vector(this.pc,this.start);
-        	//let ev=new d2.Vector(this.pc,this.end);
-        	
-        	//***comes in radians
-        	//let angle= sv.angleTo(ev);
         	return Math.abs(this.endAngle);
         }
-        
+        rotate(angle,center = {x:0, y:0}){
+        	 this.pc.rotate(angle,center);
+        	 this.startAngle+=angle;
+        }
+        static arcSE(center, start, end, counterClockwise) {
+//            let {vector} = Flatten;
+//            let startAngle = vector(center,start).slope;
+//            let endAngle = vector(center, end).slope;
+//            if (Flatten.Utils.EQ(startAngle, endAngle)) {
+//                endAngle += 2*Math.PI;
+//                counterClockwise = true;
+//            }
+//            let r = vector(center, start).length;
+//
+//            return new Arc(center, r, startAngle, endAngle, counterClockwise);
+        }        
         convert(start,extend){
     		
     		let s = 360 - start;
