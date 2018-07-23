@@ -75,10 +75,10 @@ module.exports = function(d2) {
         	g2.arc(this.pc.x,this.pc.y,this.r, d2.utils.radians(angles[0]), d2.utils.radians(angles[1]),this.endAngle>0);
         	g2.stroke();
         	
-            let ps=this.start;
-            let pe=this.end;
-            let pm=this.middle;
-            d2.utils.drawCrosshair(g2,5,[ps,pe,pm]);
+            //let ps=this.start;
+            //let pe=this.end;
+            //let pm=this.middle;
+            //d2.utils.drawCrosshair(g2,5,[ps,pe,pm]);
         }
         
 

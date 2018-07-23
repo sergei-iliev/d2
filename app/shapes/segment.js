@@ -35,11 +35,6 @@ module.exports = function(d2) {
             this.ps.translate(vec);
             this.pe.translate(vec);
         }
-        /**
-         * Return new segment rotated by given angle around given point
-         * If point omitted, rotate around origin (0,0)
-         * Positive value of angle defines rotation counter clockwise, negative - clockwise
-         */
         rotate(angle, center = {x:0, y:0}) {
           this.ps.rotate(angle,center);
           this.pe.rotate(angle,center);
