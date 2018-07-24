@@ -18,5 +18,6 @@ require("./shapes/rectangle")(d);
 require("./shapes/arc")(d);
 require("./shapes/circle")(d);
 require("./shapes/roundrectangle")(d);
+require("./shapes/polygon")(d);
 require("./shapes/utils")(d);
 module.exports = d;

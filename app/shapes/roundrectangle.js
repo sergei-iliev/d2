@@ -21,10 +21,19 @@ module.exports = function(d2) {
 				
 				this.arcs.push(new d2.Arc(new d2.Point(p1.x+rounding,p1.y+rounding),rounding,90,90));
 				this.arcs.push(new d2.Arc(new d2.Point(p1.x-rounding+width,p1.y+rounding),rounding,90,-90));
+				
+				this.arcs.push(new d2.Arc(new d2.Point(p1.x-rounding+width,p1.y-rounding+height),rounding,0,-90));
+				this.arcs.push(new d2.Arc(new d2.Point(p1.x+rounding,p1.y+height-rounding),rounding,180,90));
 			}	
     	}
     	rotate(angle,center = {x:0, y:0}){
-    		
+			this.segments.forEach(segment=>{
+				segment.rotate(angle,center);
+			});
+			
+			this.arcs.forEach(arc=>{
+				arc.rotate(angle,center);
+			});
     	}
     	
     	paint(g2){

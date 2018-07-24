@@ -31,8 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
   arc2.rotate(290,{x:200,y:200});
   arc2.paint(g2);
   
-  let r1=new d2.RoundRectangle(new d2.Point(56,56),30,40,9);
+  let r1=new d2.RoundRectangle(new d2.Point(56,56),30,40,4);
   r1.paint(g2);
+  
+  let r2=new d2.RoundRectangle(new d2.Point(56,56),30,40,4);
+  r2.rotate(34,new d2.Point(56,56));
+  r2.paint(g2);
   //circle
   //let cir=new d2.Circle(new d2.Point(200,200),50); 
   //cir.paint(g2);
