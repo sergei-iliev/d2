@@ -26,6 +26,9 @@ module.exports = function(d2) {
 				this.arcs.push(new d2.Arc(new d2.Point(p1.x+rounding,p1.y+height-rounding),rounding,180,90));
 			}	
     	}
+        contains(pt){
+      	   return false;    	   
+         }
     	rotate(angle,center = {x:0, y:0}){
 			this.segments.forEach(segment=>{
 				segment.rotate(angle,center);

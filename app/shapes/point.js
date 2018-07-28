@@ -12,6 +12,7 @@ module.exports = function(d2) {
 		       this.x += vec.x;
 		       this.y += vec.y;
 		    }
+		
 		scale(){
 				
 			}
@@ -20,7 +21,7 @@ module.exports = function(d2) {
          * If center point is omitted, rotates around zero point (0,0).
          * Positive value of angle defines rotation in counter clockwise direction,
          * negative angle defines rotation in clockwise clockwise direction
-         * @param {number} angle - angle in radians
+         * @param {number} angle - angle in degrees
          * @param {Point} [center=(0,0)] center
          */
 		rotate(angle, center = {x:0, y:0}) {
@@ -32,13 +33,21 @@ module.exports = function(d2) {
 		        this.x=x_rot;
 		        this.y=y_rot;
 		    }
-		    
+		move(offsetX,offsetY){
+	        this.x+=offsetX;
+	        this.y+=offsetY;	
+		}    
 		distanceTo(shape) {
-		        if (shape instanceof Point) {
+		        if (shape instanceof d2.Point) {
 		            let dx = shape.x - this.x;
 		            let dy = shape.y - this.y;
 		            return Math.sqrt(dx*dx + dy*dy);
 		        }	
+	            if (shape instanceof d2.Circle) {
+		            let dx = shape.center.x - this.x;
+		            let dy = shape.center.y - this.y;
+		            return Math.sqrt(dx*dx + dy*dy);	               
+	            }
 		}
 		
 		paint(g2){

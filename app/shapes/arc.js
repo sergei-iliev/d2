@@ -37,6 +37,9 @@ module.exports = function(d2) {
         get sweep(){
         	return Math.abs(this.endAngle);
         }
+        contains(pt){
+     	   return false;    	   
+        }
         rotate(angle,center = {x:0, y:0}){
         	 this.pc.rotate(angle,center);
         	 this.startAngle+=angle;

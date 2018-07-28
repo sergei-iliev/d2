@@ -35,6 +35,9 @@ module.exports = function(d2) {
             this.ps.translate(vec);
             this.pe.translate(vec);
         }
+        contains(pt){
+      	   return false;    	   
+        }
         rotate(angle, center = {x:0, y:0}) {
           this.ps.rotate(angle,center);
           this.pe.rotate(angle,center);

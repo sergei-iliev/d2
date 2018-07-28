@@ -1,5 +1,9 @@
+const DP_TOL = 0.000001;
+
 module.exports = function(d2) {
 	d2.utils={
+		 DP_TOL: DP_TOL,
+			
 		 drawCrosshair:function(g2,length,points){                
 				
 
@@ -19,7 +23,13 @@ module.exports = function(d2) {
 			// Converts from radians to degrees.
 	   degrees :function(radians) {
 			  return radians * 180 / Math.PI;
-	   },	
+	   },
+	   LT:function(x,y){
+	        return ( (x)-(y) < -DP_TOL );
+	    },
+	   LE:function(x,y){
+	        return ( (x)-(y) <  DP_TOL );
+	    },
     }
 
 };

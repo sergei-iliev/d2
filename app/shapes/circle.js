@@ -15,7 +15,10 @@ module.exports = function(d2) {
        }   
        get center() {
            return this.pc;
-       }    
+       }
+       contains(pt){
+    	   return d2.utils.LE(pt.distanceTo(this), this.r);    	   
+       }
        rotate(angle,center = {x:0, y:0}){
     	  this.pc.rotate(angle,center);    	  
        }
