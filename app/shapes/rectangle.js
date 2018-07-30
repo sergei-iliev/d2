@@ -11,5 +11,21 @@ module.exports = function(d2) {
 			this.points.push(new d2.Point(p1.x+width,p1.y+height));
 			this.points.push(new d2.Point(p1.x,p1.y+height));
 		}
+		resize(offX,offY){
+	    	let pt=this.points[2];
+	    	pt.move(offX,offY);
+		}
+		paint(g2){
+	    	g2.beginPath();
+	    	g2.moveTo(this.points[0].x,this.points[0].y);
+	    	for (var i = 1; i < this.points.length; i++) {
+	    						g2.lineTo(this.points[i].x, this.points[i].y);
+	    	}
+	    	g2.closePath();  
+	    	g2.lineWidth=1;
+	    	g2.strokeStyle = "blue";                   
+	        g2.stroke();
+		}
 	}
+
 }

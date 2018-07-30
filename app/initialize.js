@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let p2=new d2.Point(320,200);
 
   
-  //let rect=new d2.Rectangle(new d2.Point(100,100),80,60);
-  //let rect1=new d2.Rectangle(new d2.Point(100,100),80,60);
-  //rect1.rotate(45,{x:100,y:100});
-  //rect1.rotate(45,{x:100,y:100});
-
+  let rect=new d2.Rectangle(new d2.Point(300,100),80,60);
+  //rect.rotate(45,{x:100,y:100});
+  rect.paint(g2);
   
   //rect.paint(g2);
   //rect1.paint(g2);

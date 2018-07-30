@@ -2,12 +2,15 @@ module.exports = function(d2) {
 
     d2.RoundRectangle = class RoundRectangle {
     	constructor(p1,width,height,rounding) {
+    		this.boundRect=new d2.Rectangle(p1,width,height);
 			this.segments=[];
             this.arcs=[];
+            this.rounding=rounding;
 			this.init(p1,width,height,rounding);
     		
     	}
     	init(p1,width,height,rounding){
+    		
 			if(rounding==0){
 				this.segments.push(new d2.Segment(p1.clone(),new d2.Point(p1.x+width,p1.y)));     //topleft point
 				this.segments.push(new d2.Segment(new d2.Point(p1.x+width,p1.y),new d2.Point(p1.x+width,p1.y+height)));
@@ -27,10 +30,11 @@ module.exports = function(d2) {
 			}	
     	}
         contains(pt){
-      	   return false;    	   
+      	   return this.boundRect.contains(pt);    	   
          }
     	rotate(angle,center = {x:0, y:0}){
-			this.segments.forEach(segment=>{
+			this.boundRect.rotate(angle,center);
+    		this.segments.forEach(segment=>{
 				segment.rotate(angle,center);
 			});
 			
