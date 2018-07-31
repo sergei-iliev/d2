@@ -26,7 +26,6 @@ module.exports = function(d2) {
 				this.points[1].y=this.points[0].y + v.y;
 	    	
 	    	//do right 
-	    	//v1=new d2.Vector(this.points[0],pt);
 				v2=new d2.Vector(this.points[0],this.points[3]);
 	    	
 				v=v1.projectionOn(v2);
@@ -39,7 +38,8 @@ module.exports = function(d2) {
 		    	//do same
 				let pt=this.points[1];
 				pt.move(offX,offY);
-	    	//do left 
+
+	    		    	//do left 
 				let v1=new d2.Vector(this.points[3],pt);
 				let v2=new d2.Vector(this.points[3],this.points[0]);
 	    	
@@ -47,7 +47,6 @@ module.exports = function(d2) {
 	    	//translate point
 				this.points[0].x=this.points[3].x +v.x;
 				this.points[0].y=this.points[3].y + v.y;
-	    	
 	    	//do right 
 				v2=new d2.Vector(this.points[3],this.points[2]);
 	    	
@@ -56,9 +55,47 @@ module.exports = function(d2) {
 				this.points[2].x=this.points[3].x +v.x;
 				this.points[2].y=this.points[3].y + v.y;				
 			}else if(point==this.points[3]){
+		    	//do same
+				let pt=this.points[3];
+				pt.move(offX,offY);		
 				
+		    	//do left 
+				let v1=new d2.Vector(this.points[1],pt);
+				let v2=new d2.Vector(this.points[1],this.points[0]);
+	    	
+				let v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[0].x=this.points[1].x +v.x;
+				this.points[0].y=this.points[1].y + v.y;
+				
+		    	//do right 
+				v2=new d2.Vector(this.points[1],this.points[2]);
+	    	
+				v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[2].x=this.points[1].x +v.x;
+				this.points[2].y=this.points[1].y + v.y;
 			}else{
+		    	//do same
+				let pt=this.points[0];
+				pt.move(offX,offY);		
 				
+		    	//do left 
+				let v1=new d2.Vector(this.points[2],pt);
+				let v2=new d2.Vector(this.points[2],this.points[1]);
+	    	
+				let v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[1].x=this.points[2].x +v.x;
+				this.points[1].y=this.points[2].y + v.y;
+				
+		    	//do right 
+				v2=new d2.Vector(this.points[2],this.points[3]);
+	    	
+				v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[3].x=this.points[2].x +v.x;
+				this.points[3].y=this.points[2].y + v.y;				
 			}
 	    	
 		}
