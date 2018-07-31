@@ -11,9 +11,56 @@ module.exports = function(d2) {
 			this.points.push(new d2.Point(p1.x+width,p1.y+height));
 			this.points.push(new d2.Point(p1.x,p1.y+height));
 		}
-		resize(offX,offY){
-	    	let pt=this.points[2];
-	    	pt.move(offX,offY);
+		resize(offX,offY,point){
+			if(point==this.points[2]){
+	    	//do same
+				let pt=this.points[2];
+				pt.move(offX,offY);
+	    	//do left 
+				let v1=new d2.Vector(this.points[0],pt);
+				let v2=new d2.Vector(this.points[0],this.points[1]);
+	    	
+				let v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[1].x=this.points[0].x +v.x;
+				this.points[1].y=this.points[0].y + v.y;
+	    	
+	    	//do right 
+	    	//v1=new d2.Vector(this.points[0],pt);
+				v2=new d2.Vector(this.points[0],this.points[3]);
+	    	
+				v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[3].x=this.points[0].x +v.x;
+				this.points[3].y=this.points[0].y + v.y;
+	    	
+	    	
+			}else if(point==this.points[1]){
+		    	//do same
+				let pt=this.points[1];
+				pt.move(offX,offY);
+	    	//do left 
+				let v1=new d2.Vector(this.points[3],pt);
+				let v2=new d2.Vector(this.points[3],this.points[0]);
+	    	
+				let v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[0].x=this.points[3].x +v.x;
+				this.points[0].y=this.points[3].y + v.y;
+	    	
+	    	//do right 
+				v2=new d2.Vector(this.points[3],this.points[2]);
+	    	
+				v=v1.projectionOn(v2);
+	    	//translate point
+				this.points[2].x=this.points[3].x +v.x;
+				this.points[2].y=this.points[3].y + v.y;				
+			}else if(point==this.points[3]){
+				
+			}else{
+				
+			}
+	    	
 		}
 		paint(g2){
 	    	g2.beginPath();

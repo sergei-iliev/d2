@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let rect=new d2.Rectangle(new d2.Point(300,100),80,60);
   //rect.rotate(45,{x:100,y:100});
+  rect.resize(70,-30,rect.points[1]);
   rect.paint(g2);
   
   //rect.paint(g2);

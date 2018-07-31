@@ -96,6 +96,22 @@ module.exports = function(d2) {
             if (angle<0) angle += 2*Math.PI;
             return angle;
         }
+        /**
+         * Return vector projection of the current vector on another vector
+         * @param {Vector} v Another vector
+         * @returns {Vector}
+         */
+        projectionOn(v){
+            let n = v.normalize();
+            let d = this.dot(n);
+            n.multiply(d);
+            return n;
+        }
+        
+        multiply(scalar) {
+            this.x=scalar * this.x;
+            this.y=scalar * this.y;
+        }
 
 	}
 	
