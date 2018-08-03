@@ -14,7 +14,17 @@ module.exports = function(d2) {
             this.startAngle = startAngle;
             this.endAngle = endAngle;            
         }
-        
+        static arcSE(center, start, end, counterClockwise) {
+            let startAngle = d2.vector(center,start).slope;
+            let endAngle = d2.vector(center, end).slope;
+            if (Flatten.Utils.EQ(startAngle, endAngle)) {
+                endAngle += 2*Math.PI;
+                counterClockwise = true;
+            }
+            let r = vector(center, start).length;
+
+            return new Arc(center, r, startAngle, endAngle, counterClockwise);
+        }
         get start() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate(this.startAngle, this.pc);

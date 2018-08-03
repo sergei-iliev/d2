@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   let rect=new d2.Rectangle(new d2.Point(300,200),80,60);
-  rect.rotate(270,{x:300,y:200});
+  rect.rotate(70,{x:300,y:200});
   //rect.resize(-70,-30,rect.points[0]);
   
   rect.eval(g2);
