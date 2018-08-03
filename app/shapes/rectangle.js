@@ -5,11 +5,47 @@ module.exports = function(d2) {
 	d2.Rectangle = class Rectangle extends d2.Polygon{
 		constructor(p1,width,height) {
 			super();
-		
+		    this.rounding=16;
 			this.points.push(p1.clone());     //topleft point
 			this.points.push(new d2.Point(p1.x+width,p1.y));
 			this.points.push(new d2.Point(p1.x+width,p1.y+height));
 			this.points.push(new d2.Point(p1.x,p1.y+height));
+		}
+		//****test only
+		eval(g2){
+		  //start angle point
+		  let pt=this.points[0];
+		  let v=new d2.Vector(pt,this.points[1]);
+		  let norm=v.normalize();
+		  
+		  let x=pt.x +this.rounding*norm.x;
+		  let y=pt.y + this.rounding*norm.y;
+			
+		  let A=new d2.Point(x,y);
+		  
+		  d2.utils.drawCrosshair(g2,10,[A]);
+			
+		  //end angle point 
+		   pt=this.points[0];
+		   v=new d2.Vector(pt,this.points[3]);
+		   norm=v.normalize();
+		  
+		   x=pt.x +this.rounding*norm.x;
+		   y=pt.y + this.rounding*norm.y;
+			
+		   let A1=new d2.Point(x,y);
+		  
+		  
+		   d2.utils.drawCrosshair(g2,10,[A1]);
+		   
+		   //center
+		   v=new d2.Vector(pt,A1);
+		   
+		   x=A.x +v.x;
+		   y=A.y +v.y;
+		   
+		   let C=new d2.Point(x,y);
+		   d2.utils.drawCrosshair(g2,10,[C]);
 		}
 		resize(offX,offY,point){
 			if(point==this.points[2]){

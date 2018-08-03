@@ -14,15 +14,17 @@ document.addEventListener('DOMContentLoaded', function() {
   let p2=new d2.Point(320,200);
 
   
-  let rect=new d2.Rectangle(new d2.Point(300,100),80,60);
-  //rect.rotate(45,{x:100,y:100});
-  rect.resize(170,130,rect.points[0]);
+  let rect=new d2.Rectangle(new d2.Point(300,200),80,60);
+  rect.rotate(270,{x:300,y:200});
+  //rect.resize(-70,-30,rect.points[0]);
+  
+  rect.eval(g2);
   rect.paint(g2);
   
   //rect.paint(g2);
   //rect1.paint(g2);
 
-  
+/*  
   //arc 
   let p1=new d2.Point(300,300);
   let arc=new d2.Arc(p1,50,45,190); 
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
   pol1.rotate(5,{x:33,y:33});
   shapes.push(pol1);
   pol1.paint(g2);
-  
+  */
   
 });
 
