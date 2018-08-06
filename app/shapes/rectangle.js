@@ -23,7 +23,7 @@ module.exports = function(d2) {
 			
 		  let A=new d2.Point(x,y);
 		  
-		  d2.utils.drawCrosshair(g2,10,[A]);
+		  //d2.utils.drawCrosshair(g2,10,[A]);
 			
 		  //end angle point 
 		   pt=this.points[0];
@@ -36,7 +36,7 @@ module.exports = function(d2) {
 		   let A1=new d2.Point(x,y);
 		  
 		  
-		   d2.utils.drawCrosshair(g2,10,[A1]);
+		  // d2.utils.drawCrosshair(g2,10,[A1]);
 		   
 		   //center
 		   v=new d2.Vector(pt,A1);
@@ -45,7 +45,113 @@ module.exports = function(d2) {
 		   y=A.y +v.y;
 		   
 		   let C=new d2.Point(x,y);
-		   d2.utils.drawCrosshair(g2,10,[C]);
+		   //d2.utils.drawCrosshair(g2,10,[C]);
+		   
+		   let arc=d2.Arc.createArcLT(C,A,A1,false);
+		   arc.paint(g2);
+		   //----------------------RT-------------------------------------
+			//start angle point
+			pt=this.points[1];
+			v=new d2.Vector(pt,this.points[2]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A=new d2.Point(x,y);
+			  
+			//d2.utils.drawCrosshair(g2,10,[A]);
+			
+			  //end angle point 
+			pt=this.points[1];
+			v=new d2.Vector(pt,this.points[0]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A1=new d2.Point(x,y);
+			  
+			  
+			//d2.utils.drawCrosshair(g2,10,[A1]);
+			   //center
+			v=new d2.Vector(pt,A1);
+			   
+			x=A.x +v.x;
+			y=A.y +v.y;
+			   
+			C=new d2.Point(x,y);
+			//d2.utils.drawCrosshair(g2,10,[C]);
+			   
+			arc=d2.Arc.createArcLT(C,A,A1);
+			arc.paint(g2);	
+
+			//----------------------RB-------------------------------------
+			//start angle point
+			pt=this.points[2];
+			v=new d2.Vector(pt,this.points[1]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A=new d2.Point(x,y);
+			  
+			//d2.utils.drawCrosshair(g2,10,[A]);			
+			  //end angle point 
+			pt=this.points[2];
+			v=new d2.Vector(pt,this.points[3]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A1=new d2.Point(x,y);			  			  
+			//d2.utils.drawCrosshair(g2,10,[A1]);		
+			
+			   //center
+			v=new d2.Vector(pt,A1);			   
+			x=A.x +v.x;
+			y=A.y +v.y;
+			   
+			C=new d2.Point(x,y);
+			//d2.utils.drawCrosshair(g2,10,[C]);			
+			
+			arc=d2.Arc.createArcRB(C,A,A1);
+			arc.paint(g2);	
+			
+			//----------------------LB-------------------------------------
+			//start angle point
+			pt=this.points[3];
+			v=new d2.Vector(pt,this.points[2]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A=new d2.Point(x,y);
+			  
+			//d2.utils.drawCrosshair(g2,10,[A]);
+			  //end angle point 
+			pt=this.points[3];
+			v=new d2.Vector(pt,this.points[0]);
+			norm=v.normalize();
+			  
+			x=pt.x +this.rounding*norm.x;
+			y=pt.y + this.rounding*norm.y;
+				
+			A1=new d2.Point(x,y);			  			  
+			//d2.utils.drawCrosshair(g2,10,[A1]);				
+			   //center
+			v=new d2.Vector(pt,A1);			   
+			x=A.x +v.x;
+			y=A.y +v.y;
+			   
+			C=new d2.Point(x,y);
+			//d2.utils.drawCrosshair(g2,10,[C]);			
+			
+			arc=d2.Arc.createArcRB(C,A,A1);
+			arc.paint(g2);				
 		}
 		resize(offX,offY,point){
 			if(point==this.points[2]){

@@ -24,6 +24,9 @@ module.exports = function(d2) {
 	   degrees :function(radians) {
 			  return radians * 180 / Math.PI;
 	   },
+	   EQ: function(x,y) {
+	        return ( (x)-(y) <  DP_TOL && (x)-(y) > -DP_TOL );
+	   },
 	   LT:function(x,y){
 	        return ( (x)-(y) < -DP_TOL );
 	    },

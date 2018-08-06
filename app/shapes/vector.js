@@ -48,7 +48,6 @@ module.exports = function(d2) {
          */
         get slope() {
             let angle = Math.atan2(this.y, this.x);
-            console.log(d2.utils.degrees(angle));
             if (angle<0) angle = 2*Math.PI + angle;
             
             return d2.utils.degrees(angle);

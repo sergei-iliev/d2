@@ -4,17 +4,19 @@ module.exports = function(d2) {
      */
     d2.RoundRectangle = class RoundRectangle {
     	constructor(p1,width,height,rounding) {
-    		this.pl=pl;
+    		this.p1=p1;
     		this.width=width;
     		this.height=height;
     		this.rounding=rounding;
-    		this.init();
+    		this.segments=[];
+    		this.arcs=[];
+    		this.init(this.p1,this.width,this.height,this.rounding);
     	}
     	init(){
     	      	
     	}
     	rotate(angle,center = {x:0, y:0}){
-    		this.boundRect=new d2.Rectangle(p1,width,height);
+    		//this.boundRect=new d2.Rectangle(p1,width,height);
 			this.segments=[];
             this.arcs=[];
             this.rounding=rounding;
@@ -45,7 +47,7 @@ module.exports = function(d2) {
       	   return this.boundRect.contains(pt);    	   
          }
     	rotate(angle,center = {x:0, y:0}){
-			this.boundRect.rotate(angle,center);
+			//this.boundRect.rotate(angle,center);
     		this.segments.forEach(segment=>{
 				segment.rotate(angle,center);
 			});
