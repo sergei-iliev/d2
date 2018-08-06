@@ -14,7 +14,17 @@ module.exports = function(d2) {
             this.startAngle = startAngle;
             this.endAngle = endAngle;            
         }
-        
+        static arcSE(center, start, end, counterClockwise) {
+            let startAngle = d2.vector(center,start).slope;
+            let endAngle = d2.vector(center, end).slope;
+            if (Flatten.Utils.EQ(startAngle, endAngle)) {
+                endAngle += 2*Math.PI;
+                counterClockwise = true;
+            }
+            let r = vector(center, start).length;
+
+            return new Arc(center, r, startAngle, endAngle, counterClockwise);
+        }
         get start() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate(this.startAngle, this.pc);
@@ -36,6 +46,9 @@ module.exports = function(d2) {
         
         get sweep(){
         	return Math.abs(this.endAngle);
+        }
+        contains(pt){
+     	   return false;    	   
         }
         rotate(angle,center = {x:0, y:0}){
         	 this.pc.rotate(angle,center);
@@ -75,10 +88,10 @@ module.exports = function(d2) {
         	g2.arc(this.pc.x,this.pc.y,this.r, d2.utils.radians(angles[0]), d2.utils.radians(angles[1]),this.endAngle>0);
         	g2.stroke();
         	
-            let ps=this.start;
-            let pe=this.end;
-            let pm=this.middle;
-            d2.utils.drawCrosshair(g2,5,[ps,pe,pm]);
+            //let ps=this.start;
+            //let pe=this.end;
+            //let pm=this.middle;
+            //d2.utils.drawCrosshair(g2,5,[ps,pe,pm]);
         }
         
 

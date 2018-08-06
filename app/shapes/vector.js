@@ -23,14 +23,6 @@ module.exports = function(d2) {
         clone() {
             return new Vector(this.x, this.y);
         }
-        /**
-         * Slope of the vector in radians from 0 to 2PI         
-         */        
-        get slope() {
-            let angle = Math.atan2(this.y, this.x);
-            if (angle<0) angle = 2*Math.PI + angle;
-            return angle;
-        }
         
         get length() {
             return Math.sqrt(this.dot(this));
@@ -51,7 +43,20 @@ module.exports = function(d2) {
         cross(v) {
             return ( this.x * v.y - this.y * v.x );
         } 
-        
+        /**
+         * Slope of the vector in degrees from 0 to 360
+         */
+        get slope() {
+            let angle = Math.atan2(this.y, this.x);
+            console.log(d2.utils.degrees(angle));
+            if (angle<0) angle = 2*Math.PI + angle;
+            
+            return d2.utils.degrees(angle);
+        }
+        invert() {
+            this.x=-this.x;
+            this.y=-this.y;
+        }
         /**
          * Returns unit vector.<br/>
          */
@@ -95,6 +100,22 @@ module.exports = function(d2) {
             let angle = Math.atan2(norm1.cross(norm2), norm1.dot(norm2));
             if (angle<0) angle += 2*Math.PI;
             return angle;
+        }
+        /**
+         * Return vector projection of the current vector on another vector
+         * @param {Vector} v Another vector
+         * @returns {Vector}
+         */
+        projectionOn(v){
+            let n = v.normalize();
+            let d = this.dot(n);
+            n.multiply(d);
+            return n;
+        }
+        
+        multiply(scalar) {
+            this.x=scalar * this.x;
+            this.y=scalar * this.y;
         }
 
 	}
