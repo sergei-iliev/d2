@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   let rect=new d2.Rectangle(new d2.Point(300,200),80,60);
-  rect.rotate(60,{x:300,y:200});
-  //rect.resize(-70,-30,rect.points[0]);
+  rect.rotate(330,{x:300,y:200});
+  //rect.resize(70,30,rect.points[2]);
   
   rect.eval(g2);
-  //rect.paint(g2);
+  rect.paint(g2);
   
-  let roundrect=new d2.RoundRectangle(new d2.Point(300,200),80,60,16);
-  roundrect.rotate(60,{x:300,y:200});
+  let roundrect=new d2.RoundRectangle(new d2.Point(100,200),80,60,16);
+  roundrect.rotate(60,{x:100,y:200});
   roundrect.paint(g2);
  
 /*  

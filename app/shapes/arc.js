@@ -14,6 +14,7 @@ module.exports = function(d2) {
             this.startAngle = startAngle;
             this.endAngle = endAngle;            
         }
+        /*
         static createArcRB(center, start, end) {
             let startAngle =360 -(new d2.Vector(center,start)).slope;
             let endAngle = (new d2.Vector(center, end)).slope;
@@ -26,20 +27,8 @@ module.exports = function(d2) {
             let r = (new d2.Vector(center, start)).length;
 
             return new d2.Arc(center, r, startAngle, -90);
-        }        
-        static createArcLT(center, start, end) {
-            let startAngle =360 -(new d2.Vector(center,start)).slope;
-            let endAngle = (new d2.Vector(center, end)).slope;
-            
-            console.log(startAngle+"::"+endAngle);
-            
-            if (d2.utils.EQ(startAngle, endAngle)) {
-                endAngle = 360;
-            }
-            let r = (new d2.Vector(center, start)).length;
-
-            return new d2.Arc(center, r, startAngle, 90);
-        }
+        } 
+        */       
         get start() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate(this.startAngle, this.pc);
@@ -68,19 +57,7 @@ module.exports = function(d2) {
         rotate(angle,center = {x:0, y:0}){
         	 this.pc.rotate(angle,center);
         	 this.startAngle+=angle;
-        }
-        static arcSE(center, start, end, counterClockwise) {
-//            let {vector} = Flatten;
-//            let startAngle = vector(center,start).slope;
-//            let endAngle = vector(center, end).slope;
-//            if (Flatten.Utils.EQ(startAngle, endAngle)) {
-//                endAngle += 2*Math.PI;
-//                counterClockwise = true;
-//            }
-//            let r = vector(center, start).length;
-//
-//            return new Arc(center, r, startAngle, endAngle, counterClockwise);
-        }        
+        }       
         convert(start,extend){
     		
     		let s = 360 - start;
