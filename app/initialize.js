@@ -15,16 +15,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   let rect=new d2.Rectangle(new d2.Point(300,200),80,60);
-  rect.rotate(330,{x:300,y:200});
+  //rect.rotate(330,{x:300,y:200});
   //rect.resize(70,30,rect.points[2]);
   
   rect.eval(g2);
   rect.paint(g2);
   
-  let roundrect=new d2.RoundRectangle(new d2.Point(100,200),80,60,16);
+  let roundrect=new d2.RoundRectangle(new d2.Point(100,200),80,60,6);
   roundrect.rotate(60,{x:100,y:200});
+  roundrect.resize(70,30,roundrect.points[2]);
+  shapes.push(roundrect);
   roundrect.paint(g2);
  
+  let oval=new d2.Oval(new d2.Point(400,200),180,60);
+  oval.rotate(330,{x:400,y:200});
+  //oval.eval(g2);
+  oval.paint(g2);
 /*  
   //arc 
   let p1=new d2.Point(300,300);
