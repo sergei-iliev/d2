@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
   oval.rotate(330,{x:400,y:200});
   //oval.eval(g2);
   oval.paint(g2);
-/*  
+  
   //arc 
   let p1=new d2.Point(300,300);
-  let arc=new d2.Arc(p1,50,45,190); 
-  
+  let arc=new d2.Arc(p1,50,20,-100); 
+  arc.move(300,0);
   shapes.push(arc);
   arc.paint(g2);
-  
+/*  
   let arc2=new d2.Arc(p1,50,45,190); 
   arc2.rotate(290,{x:200,y:200});
   shapes.push(arc2);

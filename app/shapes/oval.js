@@ -43,7 +43,7 @@ module.exports = function(d2) {
    		   
               return [C,A,B];   		     
         }
-        
+        //****TEST************
         eval(g2){
       //*********************LEFT****************************  	
   		  //start angle point

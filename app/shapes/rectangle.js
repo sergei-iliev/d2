@@ -21,7 +21,7 @@ module.exports = function(d2) {
             let r = (new d2.Vector(center, start)).length;
             return new d2.Arc(center, r, startAngle, 90);
         }
-		//****test only
+        //****TEST************
 		eval(g2){
 		  //start angle point
 //		  let pt=this.points[0];

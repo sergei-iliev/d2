@@ -5,30 +5,15 @@ module.exports = function(d2) {
          *
          * @param {Point} pc - arc center
          * @param {number} r - arc radius
-         * @param {number} startAngle - start angle in radians from 0 to 360
-         * @param {number} endAngle - end angle in radians from -360 to 360        
+         * @param {number} startAngle - start angle in degrees from 0 to 360
+         * @param {number} endAngle - end angle in degrees from -360 to 360        
          */
         constructor(pc=new d2.Point(), r=1, startAngle=0, endAngle=360) {
             this.pc = pc;
             this.r = r;
             this.startAngle = startAngle;
             this.endAngle = endAngle;            
-        }
-        /*
-        static createArcRB(center, start, end) {
-            let startAngle =360 -(new d2.Vector(center,start)).slope;
-            let endAngle = (new d2.Vector(center, end)).slope;
-            
-            console.log(startAngle+"::"+endAngle);
-            
-            if (d2.utils.EQ(startAngle, endAngle)) {
-                endAngle = 360;
-            }
-            let r = (new d2.Vector(center, start)).length;
-
-            return new d2.Arc(center, r, startAngle, -90);
-        } 
-        */       
+        }    
         get start() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate(this.startAngle, this.pc);
@@ -52,7 +37,33 @@ module.exports = function(d2) {
         	return Math.abs(this.endAngle);
         }
         contains(pt){
-     	   return false;    	   
+        	//is outside of the circle
+        	if (d2.utils.GE(this.pc.distanceTo(pt), this.r)){
+                return false;
+        	}    
+        	
+        	let angle =360- (new d2.Vector(this.pc, pt).slope);        	
+        	let sweep=this.sweep
+
+        	if(this.endAngle>0){
+        		if((this.startAngle+sweep)>360){
+        			sweep=(this.startAngle+sweep)-360;                	  	
+        			return (d2.utils.GE(angle,this.startAngle)||d2.utils.GE(sweep,angle));
+        		}else{
+        			return (d2.utils.GE(angle,this.startAngle)&&d2.utils.GE(this.startAngle+sweep,angle));
+        		}
+        	}else{
+        		if((this.startAngle-this.sweep)>0){
+        		   return (d2.utils.GE(this.startAngle,angle)&&d2.utils.GE(angle,this.startAngle-this.sweep));
+        		}else{
+        		   sweep=360-(this.sweep-this.startAngle);                	  		        		   
+        		   return (d2.utils.GE(this.startAngle,angle)||d2.utils.GE(angle,sweep));
+        		}
+        	}
+        	
+        }
+        move(offsetX,offsetY){
+          this.pc.move(offsetX,offsetY);	
         }
         rotate(angle,center = {x:0, y:0}){
         	 this.pc.rotate(angle,center);

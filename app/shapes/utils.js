@@ -24,6 +24,12 @@ module.exports = function(d2) {
 	   degrees :function(radians) {
 			  return radians * 180 / Math.PI;
 	   },
+	   GT: (x,y) => {
+	        return ( (x)-(y) >  DP_TOL );
+	   },
+	   GE: (x,y) => {
+	        return ( (x)-(y) > -DP_TOL );
+	   },
 	   EQ: function(x,y) {
 	        return ( (x)-(y) <  DP_TOL && (x)-(y) > -DP_TOL );
 	   },
