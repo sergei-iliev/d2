@@ -107,6 +107,10 @@ module.exports = function(d2) {
 			arc.paint(g2);
 		   
         }
+        resize(offX,offY,point){
+    		super.resize(offX,offY,point);
+    		this.reset(); 	
+        }
 		reset(){
 			 this.segments=[];
 	         this.arcs=[];

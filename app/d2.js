@@ -16,6 +16,7 @@ require("./shapes/segment")(d);
 require("./shapes/vector")(d);
 require("./shapes/polygon")(d);
 require("./shapes/rectangle")(d);
+require("./shapes/hexagon")(d);
 require("./shapes/arc")(d);
 require("./shapes/circle")(d);
 require("./shapes/roundrectangle")(d);

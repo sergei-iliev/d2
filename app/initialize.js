@@ -6,38 +6,57 @@ document.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById("target");
   canvas.addEventListener('click',onClick);
   var g2 = canvas.getContext("2d");
-	  
-  // do your setup here
-  let point=new d2.Point(10,20);	 
-
-
-  let p2=new d2.Point(320,200);
-
+  g2.strokeStyle  = 'black';
+  g2.lineWidth=2;
   
-  let rect=new d2.Rectangle(new d2.Point(300,200),80,60);
-  //rect.rotate(330,{x:300,y:200});
-  //rect.resize(70,30,rect.points[2]);
-  
-  rect.eval(g2);
-  rect.paint(g2);
-  
-  let roundrect=new d2.RoundRectangle(new d2.Point(100,200),80,60,6);
-  roundrect.rotate(60,{x:100,y:200});
-  roundrect.resize(70,30,roundrect.points[2]);
-  shapes.push(roundrect);
-  roundrect.paint(g2);
+  //1.rectangle
+  let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
+  r1.paint(g2);
  
-  let oval=new d2.Oval(new d2.Point(400,200),180,60);
-  oval.rotate(330,{x:400,y:200});
-  //oval.eval(g2);
-  oval.paint(g2);
+  let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
+  r2.rotate(60,{x:100,y:300});
+  r2.resize(20,20,r2.points[2]);
+  r2.paint(g2);
   
-  //arc 
-  let p1=new d2.Point(300,300);
-  let arc=new d2.Arc(p1,50,20,-100); 
-  arc.move(300,0);
-  shapes.push(arc);
-  arc.paint(g2);
+  
+  //2.Round rect 
+  let rr1=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
+  shapes.push(rr1);
+  rr1.paint(g2);
+ 
+  let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
+  rr2.rotate(60,{x:300,y:300});
+  rr2.resize(20,20,rr2.points[2]);
+  shapes.push(rr2);
+  rr2.paint(g2);
+  
+  //3.Oval
+  let o1=new d2.Oval(new d2.Point(500,300),140,80);
+  o1.paint(g2);
+  
+  let o2=new d2.Oval(new d2.Point(500,300),140,80);
+  o2.rotate(70,{x:500,y:300});
+  o2.resize(20,20,o2.points[2]);
+  o2.paint(g2);
+  
+  //4.Arc   
+  let a1=new d2.Arc(new d2.Point(700,340),40,20,-200);   
+  shapes.push(a1);
+  a1.paint(g2);
+  
+  let a2=new d2.Arc(new d2.Point(700,340),40,20,-200);   
+  a2.rotate(40,{x:660,y:300});  
+  a2.paint(g2);
+  
+  //5.Hexagon  
+  let h1=new d2.Hexagon(new d2.Point(900,340),100);
+  h1.paint(g2);
+  
+  let h2=new d2.Hexagon(new d2.Point(900,340),100);
+  h2.rotate(40,{x:860,y:300});  
+  h2.paint(g2);
+  
+  
 /*  
   let arc2=new d2.Arc(p1,50,45,190); 
   arc2.rotate(290,{x:200,y:200});

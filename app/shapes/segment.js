@@ -42,10 +42,7 @@ module.exports = function(d2) {
           this.ps.rotate(angle,center);
           this.pe.rotate(angle,center);
         }
-		paint(g2){
-			g2.strokeStyle  = 'blue';
-			g2.lineWidth=1; 
-			
+		paint(g2){			
 			g2.moveTo(this.ps.x, this.ps.y);
 			g2.lineTo(this.pe.x, this.pe.y);
 			

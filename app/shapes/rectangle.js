@@ -307,9 +307,7 @@ module.exports = function(d2) {
 	    	for (var i = 1; i < this.points.length; i++) {
 	    						g2.lineTo(this.points[i].x, this.points[i].y);
 	    	}
-	    	g2.closePath();  
-	    	g2.lineWidth=1;
-	    	g2.strokeStyle = "blue";                   
+	    	g2.closePath();                    
 	        g2.stroke();
 		}
 	}
