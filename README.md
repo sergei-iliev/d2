@@ -1,3 +1,4 @@
 # 2D
 
-2D vector based geometry
+2D vector based geometry.
+Scale, Rotate, Move, Resize.
