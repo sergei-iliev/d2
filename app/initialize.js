@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
   o2.paint(g2);
   
   //4.Arc   
-  let a1=new d2.Arc(new d2.Point(700,340),40,20,-200);   
+  let a1=new d2.Arc(new d2.Point(740,340),40,20,-200);   
   shapes.push(a1);
   a1.paint(g2);
   
@@ -56,7 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
   h2.rotate(40,{x:860,y:300});  
   h2.paint(g2);
   
-  
+  //6.Segment
+  let s1=new d2.Segment(new d2.Point(1100,340),new d2.Point(1200,340));
+  s1.paint(g2);
+
+  let s2=new d2.Segment(new d2.Point(1100,340),new d2.Point(1200,340));
+  s2.rotate(40,{x:1000,y:340});
+  s2.paint(g2);
 /*  
   let arc2=new d2.Arc(p1,50,45,190); 
   arc2.rotate(290,{x:200,y:200});
