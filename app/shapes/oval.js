@@ -158,6 +158,13 @@ module.exports = function(d2) {
      	   super.rotate(angle,center);
      	   this.reset();    	
      	}
+    	mirror(line){
+    	   super.mirror(line);
+    	   this.reset();
+			this.arcs.forEach(arc=>{
+				arc.endAngle=-1*arc.endAngle;
+			});  
+    	}
         paint(g2){	
 			this.segments.forEach(segment=>{
 				segment.paint(g2);
