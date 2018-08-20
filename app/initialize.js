@@ -63,6 +63,22 @@ document.addEventListener('DOMContentLoaded', function() {
   let s2=new d2.Segment(new d2.Point(1100,340),new d2.Point(1200,340));
   s2.rotate(40,{x:1000,y:340});
   s2.paint(g2);
+  
+  
+  
+  let p=new d2.RoundRectangle(new d2.Point(100,500),80,100,8);    
+  p.rotate(-320,new d2.Point(100,500));
+  p.paint(g2);
+  
+  let verLine=new d2.Line(new d2.Point(120,550),new d2.Point(420,550));
+  verLine.paint(g2);
+  
+  p.mirror(verLine);
+  p.paint(g2);
+//  let prj=verLine.projectionPoint(pt1);
+//  prj.paint(g2);
+  
+  
 /*  
   let arc2=new d2.Arc(p1,50,45,190); 
   arc2.rotate(290,{x:200,y:200});

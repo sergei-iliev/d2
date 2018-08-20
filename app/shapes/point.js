@@ -36,7 +36,17 @@ module.exports = function(d2) {
 		move(offsetX,offsetY){
 	        this.x+=offsetX;
 	        this.y+=offsetY;	
-		}    
+		}   
+		/*
+		 * Mirror point around horizontal or vertical line
+		 */
+		mirror(line){
+		 let prj=line.projectionPoint(this);
+		 let v=new d2.Vector(this,prj);
+		 prj.translate(v); 
+		 this.x=prj.x;
+		 this.y=prj.y;	
+		}
 		distanceTo(shape) {
 		        if (shape instanceof d2.Point) {
 		            let dx = shape.x - this.x;
@@ -51,7 +61,7 @@ module.exports = function(d2) {
 		}
 		
 		paint(g2){
-			
+		  d2.utils.drawCrosshair(g2,10,[this]);
 		}
 	}
 

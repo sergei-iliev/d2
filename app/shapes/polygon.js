@@ -53,6 +53,11 @@ module.exports = function(d2) {
             	point.move(offsetX,offsetY);
             });	
         }
+        mirror(line){
+        	this.points.forEach(point=>{
+            	point.mirror(line);
+            });        	
+        }
         rotate(angle,center = {x:0, y:0}){
             this.points.forEach(point=>{
             	point.rotate(angle,center);

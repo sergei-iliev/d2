@@ -22,7 +22,6 @@ module.exports = function(d2) {
     	createArc(center, start, end) {
             let startAngle =360 -(new d2.Vector(center,start)).slope;
             let endAngle = (new d2.Vector(center, end)).slope;
-            
             if (d2.utils.EQ(startAngle, endAngle)) {
                 endAngle = 360;
             }
@@ -138,7 +137,18 @@ module.exports = function(d2) {
       	   
       	   return pol.contains(pt);
          }
-    	
+    	mirror(line){
+    		super.mirror(line);
+    		let p=this.points[0];
+    		this.points[0]=this.points[1];
+    		this.points[1]=p
+    		
+    		p=this.points[2];
+    		this.points[2]=this.points[3];
+    		this.points[3]=p
+    		
+    		this.reset();
+    	}
     	paint(g2){
     		//super.paint(g2);
 			this.segments.forEach(segment=>{

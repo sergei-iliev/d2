@@ -301,6 +301,7 @@ module.exports = function(d2) {
 			}
 	    	
 		}
+
 		paint(g2){
 	    	g2.beginPath();
 	    	g2.moveTo(this.points[0].x,this.points[0].y);

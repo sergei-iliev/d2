@@ -12,6 +12,7 @@ class d2 {
 let d = new d2();
 
 require("./shapes/point")(d);
+require("./shapes/line")(d);
 require("./shapes/segment")(d);
 require("./shapes/vector")(d);
 require("./shapes/polygon")(d);
