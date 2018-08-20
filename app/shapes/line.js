@@ -18,13 +18,13 @@ module.exports = function(d2) {
 			let y=this.p1.y +v.y;
 		    return new d2.Point(x,y);
 		}
-		isHorizontal(){
+		get isHorizontal(){
 			let v=new d2.Vector(this.p1,this.p2);
 			let oy=new d2.Vector(1,0);
 			//are they colinear?
 			return d2.utils.EQ(v.cross(oy),0);			
 		}
-		isVertical(){
+		get isVertical(){
 			let v=new d2.Vector(this.p1,this.p2);
 			let oy=new d2.Vector(0,1);
 			//are they colinear?

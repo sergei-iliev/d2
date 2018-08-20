@@ -68,7 +68,22 @@ module.exports = function(d2) {
         rotate(angle,center = {x:0, y:0}){
         	 this.pc.rotate(angle,center);
         	 this.startAngle+=angle;
-        }       
+        }
+        mirror(line){
+        	this.pc.mirror(line);
+        	this.endAngle=-1*this.endAngle;
+        	if(line.isVertical){
+        		if(this.startAngle>=0&&this.startAngle<=180){
+        		  this.startAngle=180-this.startAngle;  
+        		}else{
+        		  this.startAngle=180+(360-this.startAngle);		
+        		}
+        	}else{
+        		this.startAngle=360-this.startAngle; 
+        	}	
+        	
+        	console.log(this.startAngle);
+        }
         convert(start,extend){
     		
     		let s = 360 - start;
