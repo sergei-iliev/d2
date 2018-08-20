@@ -1,6 +1,6 @@
 module.exports = function(d2) {
 
-    d2.Arc = class Arc {
+  d2.Arc = class Arc {
         /**
          *
          * @param {Point} pc - arc center

@@ -1,26 +1,18 @@
-'use strict';
 
 
-class d2 {
-    constructor() {
-      
-    }
-    
+var d2 ={};
 
-};
+require("./shapes/point")(d2);
+require("./shapes/line")(d2);
+require("./shapes/segment")(d2);
+require("./shapes/vector")(d2);
+require("./shapes/polygon")(d2);
+require("./shapes/rectangle")(d2);
+require("./shapes/hexagon")(d2);
+require("./shapes/arc")(d2);
+require("./shapes/circle")(d2);
+require("./shapes/roundrectangle")(d2);
+require("./shapes/oval")(d2);
+require("./shapes/utils")(d2);
 
-let d = new d2();
-
-require("./shapes/point")(d);
-require("./shapes/line")(d);
-require("./shapes/segment")(d);
-require("./shapes/vector")(d);
-require("./shapes/polygon")(d);
-require("./shapes/rectangle")(d);
-require("./shapes/hexagon")(d);
-require("./shapes/arc")(d);
-require("./shapes/circle")(d);
-require("./shapes/roundrectangle")(d);
-require("./shapes/oval")(d);
-require("./shapes/utils")(d);
-module.exports = d;
+module.exports = d2;
