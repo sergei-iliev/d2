@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   
-  let p=new d2.RoundRectangle(new d2.Point(100,500),80,100,8);    
-  p.rotate(-320,new d2.Point(100,500));
+  let p=new d2.Segment(140,500,380,500);    
+  //p.rotate(-320,new d2.Point(100,500));
   p.paint(g2);
   
-  let verLine=new d2.Line(new d2.Point(120,550),new d2.Point(420,550));
+  let verLine=new d2.Line(new d2.Point(420,350),new d2.Point(420,550));
   verLine.paint(g2);
   
   p.mirror(verLine);

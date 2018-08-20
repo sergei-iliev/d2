@@ -42,6 +42,10 @@ module.exports = function(d2) {
           this.ps.rotate(angle,center);
           this.pe.rotate(angle,center);
         }
+        mirror(line){
+        	this.ps.mirror(line);
+        	this.pe.mirror(line);
+        }
 		paint(g2){			
 			g2.moveTo(this.ps.x, this.ps.y);
 			g2.lineTo(this.pe.x, this.pe.y);
