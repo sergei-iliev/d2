@@ -92,6 +92,10 @@ module.exports = function(d2) {
         	
         	console.log(this.startAngle);
         }
+        scale(alpha){
+           this.pc.scale(alpha);
+           this.r*=alpha;
+        }
         convert(start,extend){
     		
     		let s = 360 - start;

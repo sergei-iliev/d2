@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   g2.strokeStyle  = 'black';
   g2.lineWidth=2;
   
-  let b=new d2.Box(new d2.Point(100,200),new d2.Point(10,22),new d2.Point(3,210));
-  console.log(b);
+
   //1.rectangle
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
   r1.paint(g2);
@@ -18,19 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
   let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
   r2.rotate(60,{x:100,y:300});
   r2.resize(20,20,r2.points[2]);
+  r2.scale(1.2);
   r2.paint(g2);
-  
   
   //2.Round rect 
   let rr1=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
   shapes.push(rr1);
   rr1.paint(g2);
  
-  let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
+  //let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
+  let rr2=rr1.clone();
   rr2.rotate(60,{x:300,y:300});
   rr2.resize(20,20,rr2.points[2]);
   shapes.push(rr2);
+  
+  rr2.scale(1.2);
   rr2.paint(g2);
+  
   
   //3.Oval
   let o1=new d2.Oval(new d2.Point(500,300),140,80);
@@ -39,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let o2=new d2.Oval(new d2.Point(500,300),140,80);
   o2.rotate(70,{x:500,y:300});
   o2.resize(20,20,o2.points[2]);
+  o2.scale(1.2);
   o2.paint(g2);
   
   //4.Arc   
@@ -46,9 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
   shapes.push(a1);
   a1.paint(g2);
   
-  let a2=new d2.Arc(new d2.Point(700,340),40,120,90);
+  let a2=new d2.Arc(new d2.Point(740,340),40,20,-200);
   shapes.push(a2);
   a2.rotate(80,{x:660,y:300});    
+  a2.scale(1.2);
   a2.paint(g2);
   
   //5.Hexagon  
@@ -57,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let h2=new d2.Hexagon(new d2.Point(900,340),100);
   h2.rotate(40,{x:860,y:300});  
+  h2.scale(1.2);
   h2.paint(g2);
   
   //6.Segment
