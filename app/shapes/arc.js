@@ -41,6 +41,14 @@ module.exports = function(d2) {
         	if (d2.utils.GE(this.pc.distanceTo(pt), this.r)){
                 return false;
         	}    
+        	//check polygon between 3 points
+        	let polygon=new d2.Polygon();
+        	polygon.add(this.pc);
+        	polygon.add(this.start);
+        	polygon.add(this.end);
+        	if(polygon.contains(pt)){
+        		return false;
+        	}
         	
         	let angle =360- (new d2.Vector(this.pc, pt).slope);        	
         	let sweep=this.sweep

@@ -44,8 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
   shapes.push(a1);
   a1.paint(g2);
   
-  let a2=new d2.Arc(new d2.Point(700,340),40,20,-200);   
-  a2.rotate(40,{x:660,y:300});  
+  let a2=new d2.Arc(new d2.Point(700,340),40,120,90);
+  shapes.push(a2);
+  a2.rotate(80,{x:660,y:300});    
   a2.paint(g2);
   
   //5.Hexagon  
