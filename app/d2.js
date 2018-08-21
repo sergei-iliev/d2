@@ -3,6 +3,7 @@
 var d2 ={};
 
 require("./shapes/point")(d2);
+require("./shapes/box")(d2);
 require("./shapes/line")(d2);
 require("./shapes/segment")(d2);
 require("./shapes/vector")(d2);

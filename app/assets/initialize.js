@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   g2.strokeStyle  = 'black';
   g2.lineWidth=2;
   
+  let b=new d2.Box(new d2.Point(100,200),new d2.Point(10,22),new d2.Point(3,210));
+  console.log(b);
   //1.rectangle
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
   r1.paint(g2);
