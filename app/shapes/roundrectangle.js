@@ -131,7 +131,10 @@ module.exports = function(d2) {
     	   super.rotate(angle,center);
     	   this.reset();    	
     	}
-    	
+    	move(offX,offY){
+    	   super.move(offX,offY);
+    	   this.reset();
+    	}
         contains(pt){
       	   if(!super.contains(pt)){
       		   return false;
@@ -148,6 +151,7 @@ module.exports = function(d2) {
          }
 		scale(alpha){
 			super.scale(alpha);
+			this.rounding*=alpha;
 			this.reset();
 		}
     	mirror(line){
@@ -166,7 +170,6 @@ module.exports = function(d2) {
 			return super.box;
 		}
     	paint(g2){
-    		//super.paint(g2);
 			this.segments.forEach(segment=>{
 				segment.paint(g2);
 			});

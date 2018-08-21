@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
  
   let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
   r2.rotate(60,{x:100,y:300});
-  r2.resize(20,20,r2.points[2]);
-  r2.scale(1.2);
+  r2.resize(20,20,r2.points[2]);  
+  r2.scale(1.2);  
   r2.paint(g2);
   
   //2.Round rect 
@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
   rr2.resize(20,20,rr2.points[2]);
   shapes.push(rr2);
   
-  rr2.scale(1.2);
+  
+  rr2.scale(0.5);
   rr2.paint(g2);
   
   
@@ -50,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
   shapes.push(a1);
   a1.paint(g2);
   
-  let a2=new d2.Arc(new d2.Point(740,340),40,20,-200);
+  let a2=a1.clone();
   shapes.push(a2);
   a2.rotate(80,{x:660,y:300});    
-  a2.scale(1.2);
+  //a2.scale(1.2);
   a2.paint(g2);
   
   //5.Hexagon  
