@@ -30,14 +30,6 @@ module.exports = function(d2) {
           return new d2.Point( (this.min.x + this.max.x)/2, (this.min.y + this.max.y)/2 );
       }
       
-      get min(){
-    	  return this.min;
-      }
-      
-      get max(){
-    	  return this.max;
-      }
-      
       get width(){
     	  return this.max.x-this.min.x;
       }
