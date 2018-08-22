@@ -178,6 +178,7 @@ module.exports = function(d2) {
 			this.arcs.forEach(arc=>{
 				arc.paint(g2);
 			});
+
     	}
     }
     

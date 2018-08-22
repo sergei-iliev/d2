@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
   //let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
   let rr2=rr1.clone();
   rr2.rotate(60,{x:300,y:300});
-  rr2.resize(20,20,rr2.points[2]);
+  //rr2.resize(20,20,rr2.points[2]);
   shapes.push(rr2);
   
   
-  rr2.scale(0.5);
+  rr2.scale(1.5);
   rr2.paint(g2);
   
   
