@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
   let rr2=rr1.clone();
   rr2.rotate(60,{x:300,y:300});
+  rr2.setRounding(60);
   //rr2.resize(20,20,rr2.points[2]);
   shapes.push(rr2);
   
