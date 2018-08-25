@@ -17,6 +17,9 @@ module.exports = function(d2) {
         clone(){
            return new d2.Arc(this.pc.clone(),this.r,this.startAngle,this.endAngle);  	
         }
+        get center(){
+        	return this.pc;
+        }
         get start() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate(this.startAngle, this.pc);
@@ -122,7 +125,12 @@ module.exports = function(d2) {
         	//convert to HTML Canvas API
     		let angles=this.convert(this.startAngle,this.endAngle);
         	g2.arc(this.pc.x,this.pc.y,this.r, d2.utils.radians(angles[0]), d2.utils.radians(angles[1]),this.endAngle>0);        	
-        	g2.stroke();
+        	
+        	if(g2._fill!="undefined"&&g2._fill){
+          	  g2.fill();	
+          	}else{
+          	  g2.stroke();
+          	}
         	
             //let ps=this.start;
             //let pe=this.end;
