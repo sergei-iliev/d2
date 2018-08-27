@@ -1,11 +1,11 @@
 var d2=require('d2');
 
 var shapes=[];
-
+var g2;
 document.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById("target");
   canvas.addEventListener('click',onClick);
-  var g2 = canvas.getContext("2d");
+  g2 = canvas.getContext("2d");
   g2.strokeStyle  = 'black';
   g2.lineWidth=2;
   
@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   //2.Round rect 
   let rr1=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
-  shapes.push(rr1);
+  //shapes.push(rr1);
   rr1.paint(g2);
  
   //let rr2=new d2.RoundRectangle(new d2.Point(300,300),140,80,12);
   let rr2=rr1.clone();
   rr2.rotate(60,{x:300,y:300});
-  rr2.setRounding(60);
+  rr2.setRounding(20);
   //rr2.resize(20,20,rr2.points[2]);
-  shapes.push(rr2);
+  //shapes.push(rr2);
   
   
   rr2.scale(1.5);
@@ -48,11 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
   o2.paint(g2);
   
   //4.Arc   
-  let a1=new d2.Arc(new d2.Point(740,340),40,20,-200);   
+  let a1=new d2.Arc(new d2.Point(740,340),80,20,-250);   
   shapes.push(a1);
   a1.paint(g2);
   
   let a2=a1.clone();
+  a2.startAngle=70;
+  a2.endAngle=70;
   shapes.push(a2);
   a2.rotate(80,{x:660,y:300});    
   //a2.scale(1.2);
@@ -76,6 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
   s2.paint(g2);
   
   
+  //7.Obround
+  let ob1=new d2.Obround(new d2.Point(1300,340),80,100);
+  shapes.push(ob1);
+  g2.lineWidth =ob1.width;
+
+  //ob1.paint(g2);
+  //ob1.scale(1.1);
+  //ob1.rotate(45);
+  ob1.paint(g2);
+  g2.lineWidth =1;
   
   let p=new d2.Oval(new d2.Point(150,600),140,90);   
   p.rotate(220,new d2.Point(150,600));
