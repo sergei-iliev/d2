@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
   r1.paint(g2);
  
   let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
-  r2.rotate(60,{x:100,y:300});
-  r2.resize(20,20,r2.points[2]);  
-  r2.scale(1.2);  
+  r2.setSize(150,350);
+  r2.rotate(60);
+  //r2.resize(20,20,r2.points[2]);  
+  //r2.scale(1.2);  
   r2.paint(g2);
   
   //2.Round rect 
