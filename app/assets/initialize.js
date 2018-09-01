@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   g2.strokeStyle  = 'black';
   g2.lineWidth=2;
   
+	
 
   //1.rectangle
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
@@ -83,12 +84,20 @@ document.addEventListener('DOMContentLoaded', function() {
   let ob1=new d2.Obround(new d2.Point(1300,340),80,100);
   shapes.push(ob1);
   g2.lineWidth =ob1.width;
-
-  //ob1.paint(g2);
-  //ob1.scale(1.1);
-  //ob1.rotate(45);
   ob1.paint(g2);
   g2.lineWidth =1;
+  
+  //8.Text
+  let t1=new d2.FontText(new d2.Point(1400,340),'Hello WorldqQJjp',20);
+  g2.font = ""+parseInt(t1.fontSize)+"px Monospace";
+  t1.paint(g2);
+  
+  let t2=t1.clone();
+  t2.fontSize=30;
+  t2.rotate(40);
+  t2.move(40,0);
+  g2.font = ""+parseInt(t2.fontSize)+"px Monospace";
+  t2.paint(g2);
   
   let p=new d2.Oval(new d2.Point(150,600),140,90);   
   p.rotate(220,new d2.Point(150,600));
