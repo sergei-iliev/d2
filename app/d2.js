@@ -3,7 +3,8 @@ var d2 ={
 		
 };
 
-require("./text/fontmetrics");
+
+
 
 require("./shapes/fonttext")(d2);
 require("./shapes/point")(d2);

@@ -89,14 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   //8.Text
   let t1=new d2.FontText(new d2.Point(1400,340),'Hello WorldqQJjp',20);
-  g2.font = ""+parseInt(t1.fontSize)+"px Monospace";
-  t1.paint(g2);
+//  shapes.push(t1);
+//  t1.paint(g2);
   
   let t2=t1.clone();
-  t2.fontSize=30;
-  t2.rotate(40);
+  t2.setText('Senior Amichi');
+  t2.setSize(30);
+  t2.rotate(100);
   t2.move(40,0);
-  g2.font = ""+parseInt(t2.fontSize)+"px Monospace";
+  shapes.push(t2);
   t2.paint(g2);
   
   let p=new d2.Oval(new d2.Point(150,600),140,90);   
