@@ -58,7 +58,7 @@ module.exports = function(d2) {
 			let pe=new d2.Point(ps.x,ps.y);
 			pe.move(this.metrics.width,0);
 			
-			pe.rotate(360-this.rotation,this.anchorPoint);
+			pe.rotate(this.rotation,this.anchorPoint);
 			
 			let l=new d2.Line(ps,pe);
         	let projectionPoint=l.projectionPoint(pt);
@@ -80,7 +80,7 @@ module.exports = function(d2) {
 			g2.font = ""+parseInt(this.fontSize)+"px Monospace";
 			g2.save();
 			g2.translate(this.anchorPoint.x,this.anchorPoint.y);
-			g2.rotate(d2.utils.radians(this.rotation));
+			g2.rotate(d2.utils.radians(360-this.rotation));
 			
 
 			g2.fillText(this.text,0,0);
