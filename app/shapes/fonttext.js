@@ -1,4 +1,61 @@
-var FontMetrics=require('text/fontmetrics').FontMetrics;
+var fontmetrics=require('text/fontmetrics');
+
+/*Text Rectangle
+*
+*                  |-ascent----------------|
+*                  |                       |
+*       anchorPoint|-----------------------|
+*                  |_descent_______________|
+*
+*
+*
+*
+*
+*/
+class TextMetrics{
+	 constructor() {
+		    this.BUG_FONT_SIZE=100;
+		    this.updated = false;
+	        this.fontSize=-1;
+	        this.width=this.height=0;
+	        this.descent=0;
+	        this.ascent=0;
+	        this.xHeight=0;
+		 }	
+	
+updateMetrics() {
+       this.updated=false;
+       this.fontSize=-1;
+}
+calculateMetrics(fontSize,text) {
+	    if(this.fontSize!=fontSize){
+	        this.fontSize=fontSize;
+	        this.updated = false;
+	    }else{
+	       return;	
+	    }     
+	    
+	    var ctx=fontmetrics.getCanvasContext();	    	    
+	    	    
+        	let metrics = fontmetrics.FontMetrics({
+		    	  fontFamily: 'Monospace',
+		    	  fontWeight: 'normal',
+		    	  fontSize: 10,
+		    	  origin: 'baseline'
+   	        });
+        	
+        	ctx.font=""+this.fontSize+"px Monospace";		
+            this.width=ctx.measureText(text).width;
+            this.xHeight=metrics.xHeight;
+    	    this.ascent=Math.abs(metrics.ascent*this.fontSize);
+	        this.descent=Math.abs(metrics.descent*this.fontSize);
+	        this.height=this.fontSize;	     
+	    
+	        this.updated=true; 
+	    	    
+	       	 
+}
+}
 
 module.exports = function(d2) {
 	d2.FontText = class FontText{
@@ -7,16 +64,7 @@ module.exports = function(d2) {
 			this.text=text;
 			this.fontSize=fontSize;
 		    this.rotation=0;	
-		    this.reset(); 
-		}
-		reset(){
-		    this.metrics = FontMetrics({
-		    	  fontFamily: 'Monospace',
-		    	  fontWeight: 'normal',
-		    	  fontSize: this.fontSize,
-		    	  origin: 'baseline',
-		    	  text:this.text
-		    	});	
+		    this.metrics=new TextMetrics();  
 		}
 		clone(){
 			let copy=new FontText(this.anchorPoint.clone(),this.text,this.size);
@@ -25,16 +73,16 @@ module.exports = function(d2) {
 		}
 		setText(text){
 			this.text=text;
-			this.reset();
+			this.metrics.updateMetrics();
 		}
 		setSize(size){
 			this.fontSize=size;
-			this.reset();
+			this.metrics.updateMetrics();
 		}
 		scale(alpha){
 	      	this.anchorPoint.scale(alpha);
 			this.fontSize*=alpha;
-		    this.reset();
+			this.metrics.updateMetrics();
 			
 		}
 		move(offsetX,offsetY){
@@ -54,6 +102,9 @@ module.exports = function(d2) {
 		Finally if alpha = [0,1.0], then C is interior to 1 & 2.
 		*/
 		contains(pt){	
+		    //recalculate or buffer
+		    this.metrics.calculateMetrics(this.fontSize, this.text);
+			
 			let ps=this.anchorPoint;
 			let pe=new d2.Point(ps.x,ps.y);
 			pe.move(this.metrics.width,0);

@@ -19,8 +19,7 @@ const settings = {
     descent: 'p',
     ascent: 'h',
     tittle: 'i'
-  },
-  text:''
+  }
 }
 
 // ——————————————————————————————————————————————————
@@ -32,16 +31,18 @@ const initialize = () => {
   context = canvas.getContext('2d')
   initialized = true
 }
-
-const setFont = (fontFamily, fontSize, fontWeight,text) => {
+const getCanvasContext=()=>{
+	 if (!initialized) initialize()
+	   return context;
+}
+const setFont = (fontFamily, fontSize, fontWeight) => {
   if (!initialized) initialize()
   padding = fontSize * 0.5
   canvas.width = fontSize * 2
   canvas.height = fontSize * 2 + padding
   context.font = `${fontWeight} ${fontSize}px ${fontFamily}`
   context.textBaseline = 'top'
-  context.textAlign = 'center'
-  settings.text=text; 	  
+  context.textAlign = 'center'	  
 }
 
 const setAlignment = (baseline = 'top') => {
@@ -53,9 +54,6 @@ const setAlignment = (baseline = 'top') => {
 const updateText = (text) => {
   context.clearRect(0, 0, canvas.width, canvas.height)
   context.fillText(text, canvas.width / 2, padding, canvas.width)
-}
-const computeLineWidth = (text) => {
-   return	context.measureText(text).width;  
 }
 const computeLineHeight = () => {
   const letter = 'A'
@@ -119,7 +117,6 @@ const getMetrics = (chars = settings.chars) => ({
   bottom: computeLineHeight(),
   ascent: measureTop(chars.ascent),
   tittle: measureTop(chars.tittle),
-  width:computeLineWidth(settings.text),
   top: 0
 })
 
@@ -130,11 +127,11 @@ const getMetrics = (chars = settings.chars) => ({
 const FontMetrics = ({
   fontFamily = 'Times',
   fontWeight = 'normal',
-  fontSize = 20,
-  origin = 'baseline',
-  text
+  fontSize = 10,
+  origin = 'baseline'
+  
 } = {}) => (
-  setFont(fontFamily, fontSize, fontWeight,text), {
+  setFont(fontFamily, fontSize, fontWeight), {
     ...normalize(getMetrics(), fontSize, origin),
     fontFamily,
     fontWeight,
@@ -150,5 +147,6 @@ FontMetrics.settings = settings
 // ——————————————————————————————————————————————————
 
 module.exports = {
-		FontMetrics
+		FontMetrics,
+		getCanvasContext
 }
