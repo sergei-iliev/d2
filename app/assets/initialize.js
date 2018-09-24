@@ -2,6 +2,8 @@ var d2=require('d2');
 
 var shapes=[];
 var g2;
+var t2;
+
 document.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById("target");
   canvas.addEventListener('click',onClick);
@@ -88,16 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
   g2.lineWidth =1;
   
   //8.Text
-  let t1=new d2.FontText(new d2.Point(1400,340),'Hello WorldqQJjp',20);
+  let t1=new d2.FontText(new d2.Point(1400,340),'Senior Amichi',20);
 //  shapes.push(t1);
-//  t1.paint(g2);
+  t1.paint(g2);
   
-  let t2=t1.clone();
-  t2.setText('Senior Amichi');
-  t2.setSize(30);
-  t2.rotate(100);
-  t2.move(40,0);
+  t2=t1.clone();
   shapes.push(t2);
+  t2.setText('Senior Amichi');
+  t2.setSize(30);  
+  t2.move(50,0);
+  t2.rotate(90,new d2.Point(1400,340));
+  t2.rotate(10,new d2.Point(1400,340));
   t2.paint(g2);
   
   let p=new d2.Oval(new d2.Point(150,600),140,90);   
