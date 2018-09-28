@@ -41,20 +41,32 @@ module.exports = function(d2) {
 //        	  
 //          }
 	  }
+	  clone(){
+		  return new d2.Box([this.min,this.max]);
+	  }
 	  setRect(x,y,width,height){
-		  this.min=new d2.Point(x,y);
-		  this.max=new d2.Point(x+width,y+height);
+		  this.min.set(x,y);
+		  this.max.set(x+width,y+height);
 	  }
       get center() {
           return new d2.Point( (this.min.x + this.max.x)/2, (this.min.y + this.max.y)/2 );
       }
-      
+      get x(){
+    	 return this.min.x; 
+      }
+      get y(){
+    	  return this.min.y; 
+      }
       get width(){
     	  return this.max.x-this.min.x;
       }
       
       get height(){
     	  return this.max.y-this.min.y;
+      }
+      scale(alpha){
+    	this.min.scale(alpha);
+    	this.max.scale(alpha);
       }
       contains(pt){
     	  if(this.min.x<=pt.x&&pt.x<=this.max.x){
@@ -63,6 +75,19 @@ module.exports = function(d2) {
     	  }
     	  return false;
       }
+      not_intersects(other) {
+          return (
+              this.max.x < other.min.x ||
+              this.min.x > other.max.x ||
+              this.max.y < other.min.y ||
+              this.min.y > other.max.y
+          );
+      }
+
+      intersects(other) {
+          return !this.not_intersects(other);
+      }
+      
 	  get vertices() {
 		 return [this.min,new d2.Point(this.max.x,this.min.y),this.max,new d2.Point(this.min.x,this.max.y)];	
 	  }
