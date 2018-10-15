@@ -45,15 +45,11 @@ module.exports = function(d2) {
 		setSize(width,height){
 		  this.reset(width,height);			    
 		}
-		setRect(x,y,width,height){
-			this.points=[];
-			  let p1=new d2.Point(x,y);
-			  
-			  this.points.push(p1);     
-			  this.points.push(new d2.Point(p1.x+width,p1.y));
-			  this.points.push(new d2.Point(p1.x+width,p1.y+height));
-			  this.points.push(new d2.Point(p1.x,p1.y+height));						
-			
+		setRect(x,y,width,height){						  
+			  this.points[0].set(x,y);			  
+			  this.points[1].set(x+width,y);
+			  this.points[2].set(x+width,y+height);
+			  this.points[3].set(x,y+height);									
 		}
 		createArc(center, start, end) {
             let startAngle =360 -(new d2.Vector(center,start)).slope;
