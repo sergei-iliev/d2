@@ -103,6 +103,21 @@ document.addEventListener('DOMContentLoaded', function() {
   t2.rotate(10,new d2.Point(1400,340));
   t2.paint(g2);
   
+  //9.Polyline
+  let polyline=new d2.Polyline();
+  polyline.add(30,10);
+  polyline.add(30,50);
+  polyline.add(80,150);
+  polyline.add(120,150);
+  //polyline.paint(g2);
+  
+  let polyline2=polyline.clone();
+  polyline2.rotate(40);
+  polyline2.paint(g2);
+  
+  polyline.remove(80,150);
+  polyline.paint(g2);
+  
   let p=new d2.Oval(new d2.Point(150,600),140,90);   
   p.rotate(220,new d2.Point(150,600));
   p.paint(g2);
