@@ -83,9 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   //7.Obround
-  let ob1=new d2.Obround(new d2.Point(1300,340),80,100);
+  let ob1=new d2.Obround(new d2.Point(1300,340),200,100);
   shapes.push(ob1);
-  g2.lineWidth =ob1.width;
   ob1.paint(g2);
   g2.lineWidth =1;
   
