@@ -88,19 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ob1.paint(g2);
   g2.lineWidth =1;
   
-  //8.Text
-  let t1=new d2.FontText(new d2.Point(1400,340),'Senior Amichi',20);
-//  shapes.push(t1);
-  t1.paint(g2);
-  
-  t2=t1.clone();
-  shapes.push(t2);
-  t2.setText('Senior Amichi');
-  t2.setSize(30);  
-  t2.move(50,0);
-  t2.rotate(90,new d2.Point(1400,340));
-  t2.rotate(10,new d2.Point(1400,340));
-  t2.paint(g2);
   
   //9.Polyline
   let polyline=new d2.Polyline();
@@ -126,6 +113,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   p.mirror(verLine);
   p.paint(g2);
+  
+  
+  //8.Text
+  let t1=new d2.FontText(new d2.Point(1400,540),'Senior Amichi',20);
+//  shapes.push(t1);
+//  t1.paint(g2);
+  
+  t2=t1.clone();
+  shapes.push(t2);
+  t2.setText('Senior Amichi');
+  t2.setSize(20);  
+  //t2.move(50,0);  
+  t2.rotate(300,new d2.Point(1400,540));
+  t2.paint(g2);
 //  let prj=verLine.projectionPoint(pt1);
 //  prj.paint(g2);
   
@@ -176,7 +177,7 @@ var onClick=function(e){
 	var pt=new d2.Point(x,y);
 	
 	shapes.forEach(shape=>{
-		if(shape.contains(pt)){
+		if(shape.contains(pt,g2)){
 			console.log(shape);
 		}
 	});
