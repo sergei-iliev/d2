@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
   r1.paint(g2);
   
+  let r11=r1.clone();
+  r11.grow(50,g2);
+  r11.paint(g2);
   
   let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
   r2.setSize(150,350);

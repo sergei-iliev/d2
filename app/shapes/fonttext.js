@@ -137,7 +137,7 @@ module.exports = function(d2) {
 		If alpha > 1.0, then C is exterior to point 2.
 		Finally if alpha = [0,1.0], then C is interior to 1 & 2.
 		*/
-		contains(pt,g2){			   
+		contains(pt){			   
 			
 			/*
 			 * Based on the assumption that anchorPoint is middle normal aligned
@@ -151,7 +151,7 @@ module.exports = function(d2) {
 			
 			let l=new d2.Line(ps,pe);
 			l.rotate(this.rotation,this.anchorPoint);
-			l.paint(g2);
+
         	let projectionPoint=l.projectionPoint(pt);
         	
 		    let a=(projectionPoint.x-ps.x)/((pe.x-ps.x)==0?1:pe.x-ps.x);
