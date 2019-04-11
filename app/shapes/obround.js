@@ -111,7 +111,10 @@ module.exports = function(d2) {
             this.pc.move(offsetX,offsetY);
             this.ps.move(offsetX,offsetY);
             this.pe.move(offsetX,offsetY);
-        }    	
+        }  
+	    grow(offset){
+	    	
+	    }
 		paint(g2){
 			g2.beginPath();
 			let l=g2.lineWidth;
