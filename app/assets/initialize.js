@@ -89,7 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
   //7.Obround
   let ob1=new d2.Obround(new d2.Point(1300,340),200,100);
   shapes.push(ob1);
+  ob1.rotate(45);
   ob1.paint(g2);
+  
+  ob1.grow(25);
+  ob1.paint(g2);
+  
   g2.lineWidth =1;
   
   
