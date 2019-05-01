@@ -12,7 +12,10 @@ module.exports = function(d2) {
        }
        clone() {
            return new d2.Circle(this.pc.clone(), this.r);
-       }   
+       } 
+       get area(){
+           return  ( Math.PI * this.r*this.r );	
+       }
        get center() {
            return this.pc;
        }

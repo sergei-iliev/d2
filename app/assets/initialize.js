@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
   r1.paint(g2);
   
+  
+  
   let r11=r1.clone();
   r11.grow(50,g2);
   r11.paint(g2);
@@ -65,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
   a2.endAngle=70;
   shapes.push(a2);
   a2.rotate(80,{x:660,y:300});    
-  //a2.scale(1.2);
   a2.paint(g2);
   
   //5.Hexagon  

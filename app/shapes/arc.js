@@ -17,6 +17,9 @@ module.exports = function(d2) {
         clone(){
            return new d2.Arc(this.pc.clone(),this.r,this.startAngle,this.endAngle);  	
         }
+        get area(){
+           return  ( Math.PI * this.r*this.r ) * ( this.sweep / 360 )	
+        }
         get center(){
         	return this.pc;
         }
