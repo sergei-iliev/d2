@@ -9,8 +9,9 @@ module.exports = function(d2) {
     		this.width=width;
     		this.height=height;
     		this.rounding=rounding;
-    		this.segments=[];
-    		this.arcs=[];    		
+    		this.segments=[new d2.Segment(0,0,0,0),new d2.Segment(0,0,0,0),new d2.Segment(0,0,0,0),new d2.Segment(0,0,0,0)];
+    		this.arcs = [new d2.Arc(),new d2.Arc(),new d2.Arc(),new d2.Arc()];  
+    		
     		this.reset();
     	}
     	clone(){
@@ -23,10 +24,10 @@ module.exports = function(d2) {
     		return copy;
     	}
     	setPoints(points){
-     	   this.points=[];
-     	   this.points=points;
-     	   this.reset();
-     	}    	
+    	   this.points=[];
+    	   this.points=points;
+    	   this.reset();
+    	}
     	setRect(x,y,width,height,rounding){
     		super.setRect(x,y,width,height);
     		this.rounding=rounding;
@@ -41,15 +42,19 @@ module.exports = function(d2) {
          * @param start angle point
          * @param end angle point
          */
-    	createArc(center, start, end) {
+        resetArc(arc,center,start,end) {
             let startAngle =360 -(new d2.Vector(center,start)).slope;
             let endAngle = (new d2.Vector(center, end)).slope;
             if (d2.utils.EQ(startAngle, endAngle)) {
-                endAngle = 360;
+              endAngle = 360;
             }
-            let r = (new d2.Vector(center, start)).length;           
-            return new d2.Arc(center, r, startAngle, 90);
-        }
+            let r = (new d2.Vector(center, start)).length;         	  
+            arc.pc=center;
+            arc.r=r;
+            arc.startAngle=startAngle;
+            arc.endAngle=90;
+
+        }    	
         /**
         *
         * @param {Point} p1 corner point
@@ -83,58 +88,43 @@ module.exports = function(d2) {
 			   			
 		}
     	reset(){
-		 this.segments=[];
-         this.arcs=[];
-            
-    	 if(this.rounding==0){
-      	   let top=new d2.Segment(this.points[0],this.points[1]);
-    	   this.segments.push(top);
-    	   
-    	   let right=new d2.Segment(this.points[1],this.points[2]);
-    	   this.segments.push(right);
+            if (this.rounding == 0) {
+            	 
+                this.segments[0].set(this.points[0].x,this.points[0].y,this.points[1].x, this.points[1].y);
+                this.segments[1].set(this.points[1].x,this.points[1].y,this.points[2].x, this.points[2].y);
+                this.segments[2].set(this.points[2].x,this.points[2].y,this.points[3].x, this.points[3].y);
+                this.segments[3].set(this.points[3].x,this.points[3].y,this.points[0].x, this.points[0].y);               
 
-    	   let bottom=new d2.Segment(this.points[2],this.points[3]);
-    	   this.segments.push(bottom);
+            } else {
+                //rect
+                let top = this.segments[0];
+                let right = this.segments[1];    
+                let bottom = this.segments[2];
+                let left =this.segments[3];
+     
 
-    	   let left=new d2.Segment(this.points[3],this.points[0]);
-    	   this.segments.push(left);
-    	   	 
-    	 }else{  
-    	   //rect	 
-    	   let top=new d2.Segment(0,0,0,0);
-    	   this.segments.push(top);
-    	   
-    	   let right=new d2.Segment(0,0,0,0);
-    	   this.segments.push(right);
+                //arcs
+                let r = this.findArcPoints(this.points[0], this.points[1], this.points[3]);
+                this.resetArc(this.arcs[0],r[0], r[1], r[2]);
+                top.ps = r[1].clone();
+                left.ps = r[2].clone();
 
-    	   let bottom=new d2.Segment(0,0,0,0);
-    	   this.segments.push(bottom);
+                r = this.findArcPoints(this.points[1], this.points[2], this.points[0]);
+                this.resetArc(this.arcs[1],r[0], r[1], r[2]);
+                top.pe = r[2].clone();
+                right.ps = r[1].clone();
 
-    	   let left=new d2.Segment(0,0,0,0);
-    	   this.segments.push(left);
+                r = this.findArcPoints(this.points[2], this.points[3], this.points[1]);
+                this.resetArc(this.arcs[2] ,r[0], r[1], r[2]);
+                right.pe = r[2].clone();
+                bottom.ps = r[1].clone();
 
-    	   //arcs	 
-    	   let r=this.findArcPoints(this.points[0],this.points[1],this.points[3]);
-		   this.arcs.push(this.createArc(r[0],r[1],r[2]));
-		   top.ps=r[1].clone();
-		   left.ps=r[2].clone();
-		   
-		   r=this.findArcPoints(this.points[1],this.points[2],this.points[0]);   
-		   this.arcs.push(this.createArc(r[0],r[1],r[2]));
-		   top.pe=r[2].clone();
-		   right.ps=r[1].clone();
-		   
-		   r=this.findArcPoints(this.points[2],this.points[3],this.points[1]);  
-		   this.arcs.push(this.createArc(r[0],r[1],r[2]));
-		   right.pe=r[2].clone();
-		   bottom.ps=r[1].clone();
-			
-		   
-		   r=this.findArcPoints(this.points[3],this.points[0],this.points[2]);  
-		   this.arcs.push(this.createArc(r[0],r[1],r[2]));
-		   bottom.pe=r[2].clone();
-		   left.pe=r[1].clone();
-    	 }      	
+
+                r = this.findArcPoints(this.points[3], this.points[0], this.points[2]);
+                this.resetArc(this.arcs[3],r[0], r[1], r[2]);
+                bottom.pe = r[2].clone();
+                left.pe = r[1].clone();
+            }    		    	
     	}
     	resize(offX,offY,point){
     		super.resize(offX,offY,point);
@@ -206,7 +196,6 @@ module.exports = function(d2) {
 		}
     	paint(g2){
     		if(g2._fill!=undefined&&g2._fill){
-    			g2.globalCompositeOperation ='copy';
     			let vertices=this.polygon;
         		
     	    	g2.beginPath();	    		    		    	
@@ -221,7 +210,6 @@ module.exports = function(d2) {
     				var circle=new d2.Circle(arc.pc,arc.r);
     	    		circle.paint(g2);
     			});
-    	    	g2.restore();
     		}else{
 			 this.segments.forEach(segment=>{
 				segment.paint(g2);

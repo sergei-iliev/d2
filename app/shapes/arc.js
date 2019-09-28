@@ -59,7 +59,6 @@ module.exports = function(d2) {
         	let l=new d2.Line(this.pc,this.middle);
         	let projectionPoint=l.projectionPoint(pt);
         	
-        	let middle=this.middle;
         	let mid=new d2.Point((this.start.x+this.end.x)/2,(this.start.y+this.end.y)/2);  
         	
         	let dist1=this.middle.distanceTo(mid);
