@@ -29,6 +29,10 @@ module.exports = function(d2) {
             this.points.forEach(point=>{
             	point.move(offsetX,offsetY);
             });	
+        }        
+        mirror(line) {        
+          super.mirror(line);
+          this.pc.mirror(line);
         }
 		rotate(angle,center = {x:this.center.x, y:this.center.y}){
 			this.center.rotate(angle,center);
