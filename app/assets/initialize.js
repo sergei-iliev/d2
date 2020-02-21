@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //1.rectangle
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
+  r1.rotate(10);
   r1.paint(g2);
   
   
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let r2=new d2.Rectangle(new d2.Point(100,300),140,80);
   r2.setSize(150,350);
-  r2.rotate(60);
+  r2.rotate(20);
   //r2.resize(20,20,r2.points[2]);  
   //r2.scale(1.2);  
   r2.paint(g2);
@@ -141,44 +142,11 @@ document.addEventListener('DOMContentLoaded', function() {
 //  prj.paint(g2);
   
   
-/*  
-  let arc2=new d2.Arc(p1,50,45,190); 
-  arc2.rotate(290,{x:200,y:200});
-  shapes.push(arc2);
-  arc2.paint(g2);
-  
-  let r1=new d2.RoundRectangle(new d2.Point(56,56),30,40,4);
-  shapes.push(r1);
-  r1.paint(g2);
-  
-  let r2=new d2.RoundRectangle(new d2.Point(56,56),30,40,4);
-  r2.rotate(34,new d2.Point(56,56));
-  shapes.push(r2);
-  r2.paint(g2);
-  
-  //circle
-  let cir=new d2.Circle(new d2.Point(200,200),50); 
-  shapes.push(cir);
-  cir.paint(g2);
-  
-  //let cir1=new d2.Circle(new d2.Point(200,200),50); 
-  //cir1.rotate(-40,new d2.Point(150,150));
-  //cir1.paint(g2);
-  
-  let pol=new d2.Polygon();
-  pol.add(new d2.Point(33,33));
-  pol.add(new d2.Point(133,33));
-  pol.add(new d2.Point(44,200));
-  shapes.push(pol);
-  pol.move(100,0);
-  pol.paint(g2);
-  
-  let pol1=pol.clone();
-  pol1.rotate(5,{x:33,y:33});
-  shapes.push(pol1);
-  pol1.paint(g2);
-  
-*/  
+   let ell =new d2.Ellipse(new d2.Point(420,550),150,50);
+   //ell.rotate(88,new d2.Point(0,0));
+   shapes.push(ell);
+   ell.paint(g2);
+   
 });
 
 var onClick=function(e){
