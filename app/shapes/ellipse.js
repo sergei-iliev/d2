@@ -5,13 +5,24 @@ module.exports = function(d2) {
             this.pc = pc;
             this.w = w;
             this.h=h;
-            this.rotate=0;
+            this.rotation=0;
         }
         clone(){
         	let copy=new d2.Ellipse(this.pc.clone(),this.w,this.h);
-        	copy.rotate=this.rotate;
+        	copy.rotation=this.rotation;
         	return copy;
         }
+        get box(){
+        	let topleft=this.pc.clone();
+        	topleft.move(-this.w,-this.h);
+        	let rect=new d2.Rectangle(topleft,2*this.w,2*this.h);
+        	rect.rotate(this.rotation,this.pc);
+        	return rect.box;
+        }
+		rotate(angle,center = {x:this.box.center.x, y:this.box.center.y}){
+			this.pc.rotate(angle,center);
+			this.rotation=angle;
+		}
         scale(alpha){
      	   this.pc.scale(alpha);
      	   this.w*=alpha;
@@ -30,17 +41,15 @@ module.exports = function(d2) {
 
             return (tdx * tdx) / (this.w * this.w) + (tdy * tdy) / (this.h * this.h) <= 1;
         }
-		rotate(angle,center = {x:this.pc.x, y:this.pc.y}){
-			this.rotate=angle;				
-		}
+
         move(offsetX,offsetY){
             this.pc.move(offsetX,offsetY);       	
         }
         convert(){
-          return -1*d2.utils.radians(this.rotate);	
+          return -1*d2.utils.radians(this.rotation);	
         }
-        paint(g2){
-           	g2.beginPath();  
+        paint(g2){	
+        	g2.beginPath();  
            	
            	let alpha=this.convert();
            	g2.ellipse(this.pc.x,this.pc.y,this.w, this.h,alpha, 0, 2 * Math.PI);
