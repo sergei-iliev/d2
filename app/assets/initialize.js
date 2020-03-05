@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
 //  prj.paint(g2);
   
   
-   let e2 =new d2.Ellipse(new d2.Point(420,550),150,50);
-   e2.rotate(120);
+   let e2 =new d2.Arcellipse(new d2.Point(420,550),50,150);
+   e2.rotate(20);
    shapes.push(e2);
    e2.paint(g2);
    

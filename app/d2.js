@@ -23,5 +23,5 @@ require("./shapes/obround")(d2);
 require("./shapes/polyline")(d2);
 require("./shapes/ellipse")(d2);
 require("./shapes/utils")(d2);
-
+require("./shapes/arcellipse")(d2);
 module.exports = d2;
