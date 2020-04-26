@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
    let e2 =new d2.Arcellipse(new d2.Point(420,550),50,150);
-   e2.rotate(20);
+   //e2.rotate(20);
    shapes.push(e2);
    e2.paint(g2);
    
