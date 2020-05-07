@@ -86,11 +86,13 @@ module.exports = function(d2) {
 			this.text=text;
 			this.fontSize=fontSize;
 		    this.rotation=rotation;	
+		    this.style='plain';
 		    this.metrics=new TextMetrics();  
 		    this.metrics.calculateMetrics(this.fontSize,this.text);
 		}
 		clone(){
 			let copy=new FontText(this.anchorPoint.x,this.anchorPoint.y,this.text,this.fontSize,this.rotation);		
+			copy.style=this.style;
 			return copy;
 		}
 		setText(text){
@@ -176,7 +178,7 @@ module.exports = function(d2) {
 			let scaledFontSize=parseInt(this.fontSize*alpha);
 			
 			
-			g2.font = ""+(scaledFontSize)+"px Monospace";
+			g2.font =(this.style==='plain'?'':this.style)+" "+(scaledFontSize)+"px Monospace";
 			g2.textBaseline='middle';
 			g2.textAlign='center';
 			g2.save();
@@ -200,7 +202,7 @@ module.exports = function(d2) {
 			
 		}		
 		paint(g2){					
-			g2.font = ""+(this.fontSize)+"px Monospace";
+			g2.font =(this.style==='plain'?'':this.style)+" "+(this.fontSize)+"px Monospace";
 			g2.textBaseline='middle';
 			g2.textAlign='center';
 			g2.save();
