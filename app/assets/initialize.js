@@ -141,7 +141,11 @@ document.addEventListener('DOMContentLoaded', function() {
 //  let prj=verLine.projectionPoint(pt1);
 //  prj.paint(g2);
   
-  
+  //9. Basic Text
+   let bt=new d2.BaseFontText(400,150,'MgMQjFp',0,130);
+   bt.paint(g2);
+   
+   
    let e2 =new d2.Arcellipse(new d2.Point(420,550),50,150);
    //e2.rotate(20);
    shapes.push(e2);
