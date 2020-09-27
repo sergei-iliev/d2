@@ -35,7 +35,9 @@ module.exports = function(d2) {
             p0.rotate(angle, this.pc);
             return p0;
         }
-        
+        get length() {
+            return Math.abs(this.sweep * this.r);
+        }
         get end() {
             let p0 = new d2.Point(this.pc.x + this.r, this.pc.y);
             p0.rotate((this.startAngle+this.endAngle), this.pc);
@@ -46,17 +48,42 @@ module.exports = function(d2) {
         	return Math.abs(this.endAngle);
         }
         get box(){
-          return new d2.Box([this.start,this.end,this.middle]);      	
+        	let points = [];
+            let p1=this.pc.clone();p1.translate(this.r, 0);
+            if (p1.on(this)) {
+                points.push(p1);
+            }            
+            let p2=this.pc.clone();p2.translate(0,this.r);
+            if (p2.on(this)) {
+                points.push(p2);
+            }            
+            let p3=this.pc.clone();p3.translate(-this.r,0);
+            if (p3.on(this)) {
+                points.push(p3);
+            }
+            let p4=this.pc.clone();p4.translate(0,-this.r);
+            if (p4.on(this)) {
+                points.push(p4);
+            }
+        	
+            points.push(this.start);
+            points.push(this.end);
+            return new d2.Box(points);
         }
+      
         get vertices() {
             return this.box.vertices;
         }
         contains(pt){
-        	//is outside of the circle
-        	if (d2.utils.GE(this.pc.distanceTo(pt), this.r)){
-                return false;
-        	}    
-        	let l=new d2.Line(this.pc,this.middle);
+        	//is on circle
+            if (!d2.utils.EQ(this.pc.distanceTo(pt), this.r)){
+            	//is outside of the circle
+            	if (d2.utils.GE(this.pc.distanceTo(pt), this.r)){
+                    return false;
+            	}                
+            }
+        	
+            let l=new d2.Line(this.pc,this.middle);
         	let projectionPoint=l.projectionPoint(pt);
         	
         	let mid=new d2.Point((this.start.x+this.end.x)/2,(this.start.y+this.end.y)/2);  
@@ -123,11 +150,13 @@ module.exports = function(d2) {
           	  g2.fill();	
           	}else{
           	  g2.stroke();
-          	}
+          	}            
+        	
             //let ps=this.start;
             //let pe=this.end;
             //let pm=this.middle;
-            //d2.utils.drawCrosshair(g2,5,[ps,pe,pm]);
+            //d2.utils.drawCrosshair(g2,5,[p1,p2,p3,p4]);
+            
         }
         
 

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   g2.strokeStyle  = 'black';
   g2.lineWidth=2;
   
-	
+	/*
 
   //1.rectangle
   let r1=new d2.Rectangle(new d2.Point(100,300),140,80);
@@ -57,12 +57,14 @@ document.addEventListener('DOMContentLoaded', function() {
   o2.resize(20,20,o2.points[2]);
   o2.scale(1.2);
   o2.paint(g2);
-  
+  */
   //4.Arc   
-  let a1=new d2.Arc(new d2.Point(740,340),80,20,-250);   
+  let a1=new d2.Arc(new d2.Point(740,340),80,20,-75);   
   shapes.push(a1);
+  let box=a1.box;
+  box.paint(g2);
   a1.paint(g2);
-  
+  /*
   let a2=a1.clone();
   a2.startAngle=70;
   a2.endAngle=70;
@@ -150,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
    //e2.rotate(20);
    shapes.push(e2);
    e2.paint(g2);
-   
+   */
 });
 
 var onClick=function(e){
