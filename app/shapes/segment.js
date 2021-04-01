@@ -88,7 +88,7 @@ module.exports = function(d2) {
 
               if (denom == 0) {
                 if (numeA == 0 && numeB == 0) {
-                  return true;  //COLINEAR;
+                  return false;  //COLINEAR;
                 }
                 return false; //PARALLEL;
               }
