@@ -74,6 +74,35 @@ module.exports = function(d2) {
         get vertices() {
             return this.box.vertices;
         }
+        isPointOn(pt,diviation){
+    		let isInside=false;
+        	let clickedAngle =new d2.Vector(this.pc,pt).slope;    		            		
+    		let angle = 360 - clickedAngle;		
+    		//test angle		
+    	    if(this.endAngle>0){ //counter clockwise    	    	
+    	    	if(angle-this.startAngle>0){
+    	    	  angle=(angle-this.startAngle);
+    	    	}else{
+    	    	  angle=((360-this.startAngle)+angle);	
+    	    	}
+    	    	isInside=(angle<this.endAngle);
+    	    }else{ //clockwise    	    	
+    	    	if((angle-this.startAngle)>0){
+    	    	  angle=((angle-360)-this.startAngle);	
+    	    	}else{
+    	    	  angle=angle-this.startAngle;
+    	    	}
+    	    	isInside=(Math.abs(angle)<Math.abs(this.endAngle));
+    	    }    		
+    		if(!isInside){
+    			return false;
+    		}
+    		//test distance
+    		let dist=this.pc.distanceTo(pt);
+
+    		return ((this.r-diviation)<dist&&(this.r+diviation)>dist);
+    			    		
+        }
         contains(pt){
         	//is on circle
             if (!d2.utils.EQ(this.pc.distanceTo(pt), this.r)){
