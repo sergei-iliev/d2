@@ -90,7 +90,7 @@ module.exports = function(d2) {
 		isPointOn(pt,diviation){
 			if (this.rounding == 0) {
 				for(const seg of this.segments){
-				 	if(seg.isPointOn(pt,diviation)){
+				 	if(seg.isPointOn(pt,diviation)){				 		
 				 		return true;
 				 	}										
 				}
@@ -161,18 +161,22 @@ module.exports = function(d2) {
     	   this.reset();
     	}
         contains(pt){
-      	   if(!super.contains(pt)){
-      		   return false;
-      	   }    	   
-      	   
-      	   //constrauct polygon
-      	   let pol=new d2.Polygon();
-      	   this.segments.forEach(segment=>{
-      		 pol.add(segment.ps);
-      		 pol.add(segment.pe);
-      	   });
-      	   
-      	   return pol.contains(pt);
+  	 		var pol=new d2.Polygon();
+  	 		this.segments.forEach(segment=>{
+  		 		pol.add(segment.ps);
+  		 		pol.add(segment.pe);
+  	 		});
+  	   
+  	 		if(pol.contains(pt)) {
+  		 		return true;
+  	 		}
+  	        var result=false;
+	   		this.arcs.forEach(arc=>{
+		 		if(arc.contains(pt)){
+					result=true;
+		 		}										
+	   		});			
+	 	  return result;
          }
 		scale(alpha){
 			super.scale(alpha);

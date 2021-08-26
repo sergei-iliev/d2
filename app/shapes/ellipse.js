@@ -5,7 +5,7 @@ module.exports = function(d2) {
             this.pc = pc;
             this.w = w;
             this.h=h;
-        	this.vert=[new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0)];        	        	
+        	this.vert=[new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0),new d2.Point(0,0)];        	        	
             this.rotation=0;
         }
         clone(){
@@ -66,10 +66,16 @@ module.exports = function(d2) {
 		    }
 
           	return false;
-        }         
-        contains(pt) {
-        	let x=pt.x;
-        	let y=pt.y;
+        }        
+        contains(...args) {
+	       let x,y;
+	       if(args.length==1){
+        	  x=args[0].x;
+        	  y=args[0].y;		
+	       }else{
+        	  x=args[0];
+        	  y=args[1];				
+		   }
         	let alpha=this.convert(this.rotation);
             var cos = Math.cos(alpha),
                 sin = Math.sin(alpha);
@@ -80,6 +86,7 @@ module.exports = function(d2) {
 
             return (tdx * tdx) / (this.w * this.w) + (tdy * tdy) / (this.h * this.h) <= 1;
         }
+
 		resize(offX,offY,pt){
 		  if(pt.equals(this.vert[0])){
 				let point=this.vert[0];
@@ -151,7 +158,7 @@ module.exports = function(d2) {
         }
         mirror(line){
         	this.pc.mirror(line);	
-        }        
+        }
         convert(a){
           return -1*d2.utils.radians(a);	
         }
