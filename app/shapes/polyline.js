@@ -101,7 +101,7 @@ module.exports = function(d2) {
 	   get vertices() {
 		    return this.points;	
 	   } 	
-       isPointOn(pt,diviation){    	       
+       isPointOnSegment(pt,diviation){    	       
      	  let segment=new d2.Segment(0,0,0,0);	   
 	          let prevPoint = this.points[0];        
 	          for(let point of this.points){    	        	  
@@ -115,11 +115,6 @@ module.exports = function(d2) {
 	              }
 	              prevPoint = point;
 	          }		
-	          //close polygon	
-	          segment.set(prevPoint.x,prevPoint.y,this.points[0].x,this.points[0].y);
-           if(segment.isPointOn(pt,diviation)){
-               return true;
-           }
 	          
 	          return false;
        } 	   
