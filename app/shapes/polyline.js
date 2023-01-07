@@ -103,8 +103,12 @@ module.exports = function(d2) {
 	   } 	
 	   get segments(){
 		  let list=[];
-    	  let prevPoint = this.points[0];        
-    	   for(let point of this.points){                          
+     	  if(this.points.length<2) {
+    		return list;
+    	  }
+    	  let prevPoint = this.points[0]; 
+          for(let i=1;i<this.points.length;i++) {   
+				let point=this.points[i];        	                            
         		if(prevPoint.equals(point)){                        
             		prevPoint = point;
             		continue;
@@ -116,7 +120,7 @@ module.exports = function(d2) {
            	prevPoint = point;
     	   }
     	   return list;  
-	   }	   
+	   }	 	   
        isPointOnSegment(pt,diviation){    	       
      	  let segment=new d2.Segment(0,0,0,0);	   
 	          let prevPoint = this.points[0];        
